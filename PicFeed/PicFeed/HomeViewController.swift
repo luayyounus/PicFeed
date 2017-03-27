@@ -12,11 +12,13 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     let imagePicker = UIImagePickerController()
     
-    @IBOutlet weak var image: HomeViewController!
+    
+    @IBOutlet weak var imageView: UIImageView!
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("HEllooooo")
 
         // Do any additional setup after loading the view.
     }
@@ -38,7 +40,10 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        print("Info: \(info)") //printing info in the console to show image type, location, size, orientation, scale and a lot others ......
+        print("Info: \(info)")
+        imageView.image = info["UIImagePickerControllerOriginalImage"] as? UIImage
+        //printing info in the console to show image type, location, size, orientation, scale and a lot others ......
+        self.dismiss(animated: true, completion: nil)
     }
 
     @IBAction func imageTapped(_ sender: Any) {
