@@ -12,11 +12,13 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     let imagePicker = UIImagePickerController()
     
-    @IBOutlet weak var image: HomeViewController!
+    
+    @IBOutlet weak var imageView: UIImageView!
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("HEllooooo")
 
         // Do any additional setup after loading the view.
     }
@@ -26,6 +28,8 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         self.imagePicker.delegate = self
         
         self.imagePicker.sourceType = sourceType
+        
+        
         
         //self.imagePicker is what we will present
         self.present(self.imagePicker, animated: true, completion: nil)
@@ -38,7 +42,10 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        print("Info: \(info)") //printing info in the console to show image type, location, size, orientation, scale and a lot others ......
+        print("Info: \(info)")
+        imageView.image = info["UIImagePickerControllerOriginalImage"] as? UIImage
+        //printing info in the console to show image type, location, size, orientation, scale and a lot others ......
+        self.dismiss(animated: true, completion: nil)
     }
 
     @IBAction func imageTapped(_ sender: Any) {
@@ -54,6 +61,8 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         //select the source type of camera
         let cameraAction = UIAlertAction(title: "Camera", style: .default) { (action) in
             self.presentImagePickerWith(sourceType: .camera)
+            self.imagePicker.allowsEditing = true
+            
         }
         
         let photoAction = UIAlertAction(title: "Photo Library", style: .default) { (action) in
