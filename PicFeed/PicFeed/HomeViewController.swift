@@ -10,13 +10,13 @@ import UIKit
 
 class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    let imagePicker = UIImagePickerController()
+    let imagePicker = UIImagePickerController() //initializing it in memory
     
     
     @IBOutlet weak var imageView: UIImageView!
 
 
-    override func viewDidLoad() {
+    override func viewDidLoad() { //its over-riding methods from the super class(parent class)
         super.viewDidLoad()
         print("HEllooooo")
 
@@ -25,9 +25,9 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
 
     func presentImagePickerWith(sourceType: UIImagePickerControllerSourceType){
         
-        self.imagePicker.delegate = self
+        self.imagePicker.delegate = self //assigning the delegate of the imagePicker to this HomeViewController
         
-        self.imagePicker.sourceType = sourceType
+        self.imagePicker.sourceType = sourceType //
         
         
         
@@ -38,13 +38,19 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     //if the user is presented with the image and clicked cancel, it will get back to the home view controller
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil) //HomeViewController tells the imagePicker to dismiss! GET OUT OF MY LIFE!
     }
+    
+    // didFinishPickingMediaWithInfo coming from the ImgaeDelegate protocol
+    //info[ ] without quotations inside to make sure we didnt type in a wrong key
+    //printing info in the console to show image type, location, size, orientation, scale and a lot others ......
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         print("Info: \(info)")
-        imageView.image = info["UIImagePickerControllerOriginalImage"] as? UIImage
-        //printing info in the console to show image type, location, size, orientation, scale and a lot others ......
+        imageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        
+    
+        //dismissing the picker on line 45
         self.dismiss(animated: true, completion: nil)
     }
 
@@ -54,12 +60,37 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         self.presentActionSheet()
     }
     
+    @IBAction func postButtonPressed(_ sender: Any) {
+        
+        if let image = self.imageView.image {
+            
+            let newPost = Post(image: image)
+            CloudKit.shared.save(post: newPost, completion: { (success) in
+                
+                if success {
+                    print("Saved PostSuccessfully to CloudKit!")
+                    
+                } else {
+                    print("Unsuccessful save to CloudKit")
+                }
+                
+            })
+        }
+    }
+    
+    
     func presentActionSheet(){
         
+        
+        //initializer the UIAlertController (it takes in Strings)
         let actionSheetController = UIAlertController(title: "Source", message: "Please Select Source Type", preferredStyle: .actionSheet)
+        //preferredStyle is an Enum here because its a choice
+        
+        
         
         //select the source type of camera
-        let cameraAction = UIAlertAction(title: "Camera", style: .default) { (action) in
+        let cameraAction = UIAlertAction(title: "Camera", style: .default) { (action) in //(action) defining the action for UIAlertAction
+            
             self.presentImagePickerWith(sourceType: .camera)
             self.imagePicker.allowsEditing = true
             
