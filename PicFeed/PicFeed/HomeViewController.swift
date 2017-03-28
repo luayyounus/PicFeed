@@ -29,6 +29,8 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         self.imagePicker.sourceType = sourceType
         
+        
+        
         //self.imagePicker is what we will present
         self.present(self.imagePicker, animated: true, completion: nil)
         
@@ -59,6 +61,8 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         //select the source type of camera
         let cameraAction = UIAlertAction(title: "Camera", style: .default) { (action) in
             self.presentImagePickerWith(sourceType: .camera)
+            self.imagePicker.allowsEditing = true
+            
         }
         
         let photoAction = UIAlertAction(title: "Photo Library", style: .default) { (action) in

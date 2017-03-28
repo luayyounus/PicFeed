@@ -21,14 +21,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4jg-f0-FjV">
-                                <rect key="frame" x="87" y="168" width="240" height="400"/>
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4jg-f0-FjV">
+                                <rect key="frame" x="0.0" y="8" width="414" height="728"/>
                                 <color key="backgroundColor" red="1" green="0.70988793594633803" blue="0.40278940048857115" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="dSj-5k-4kx"/>
-                                    <constraint firstAttribute="height" constant="400" id="wHz-wC-ANz"/>
-                                </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="1yn-dF-ikk" appends="YES" id="7ct-jp-xgW"/>
                                 </connections>
@@ -36,8 +32,13 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="4jg-f0-FjV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="OeQ-Pp-vKd"/>
-                            <constraint firstItem="4jg-f0-FjV" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="sXp-ww-zi4"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="4jg-f0-FjV" secondAttribute="bottom" id="BJd-IY-ZI3"/>
+                            <constraint firstItem="4jg-f0-FjV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="C4z-Ih-Cdl"/>
+                            <constraint firstAttribute="trailing" secondItem="4jg-f0-FjV" secondAttribute="trailing" id="CzM-BI-YjV"/>
+                            <constraint firstItem="4jg-f0-FjV" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Sqg-xc-COv"/>
+                            <constraint firstAttribute="trailing" secondItem="4jg-f0-FjV" secondAttribute="trailing" id="Xo9-g1-Bse"/>
+                            <constraint firstItem="4jg-f0-FjV" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="8" id="mn1-Ua-ub4"/>
+                            <constraint firstItem="4jg-f0-FjV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="uRR-Rf-aTZ"/>
                         </constraints>
                     </view>
                     <connections>
@@ -51,7 +52,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="140" y="137.18140929535232"/>
+            <point key="canvasLocation" x="139.13043478260872" y="136.95652173913044"/>
         </scene>
     </scenes>
 </document>
