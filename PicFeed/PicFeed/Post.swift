@@ -29,8 +29,27 @@ extension Post {
     
     class func recordFor(post: Post) throws -> CKRecord? {
         
-        //GLOBAL function that takes JPEG and the quality of 0.7
+        //GLOBAL function that takes JPEG and the quality of 0.7 (compression to 70%)
         guard let data = UIImageJPEGRepresentation(post.image, 0.7) else {throw PostError.writingImageToData} //will exit the func
+        
+        
+        //it doesnt return a value so it's good to put it in do- catch
+        
+        do{
+            try data.write(to: post.image.path) //write data to disk
+            
+            let asset = CKAsset(fileURL: post.image.path) //point the CKAsset to the disk(URL)
+            
+            let record = CKRecord = CKRecord(recordType: "Post") //creating a record on cloudkit
+            
+            record.setValue(asset,forKey:"image")
+            
+            
+            
+        } catch {
+            throw PostError.writingDataToDisk
+        }
+        
         
         
     }
