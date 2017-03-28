@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CloudKit
 
 class Post {
     let image: UIImage
@@ -40,17 +41,15 @@ extension Post {
             
             let asset = CKAsset(fileURL: post.image.path) //point the CKAsset to the disk(URL)
             
-            let record = CKRecord = CKRecord(recordType: "Post") //creating a record on cloudkit
+            let record = CKRecord(recordType: "Post") //creating a record on cloudkit
             
             record.setValue(asset,forKey:"image")
             
-            
+            return record
             
         } catch {
             throw PostError.writingDataToDisk
         }
-        
-        
         
     }
 }

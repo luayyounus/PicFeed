@@ -29,6 +29,7 @@ class CloudKit {
                     
                     if error != nil {
                         completion(false)
+                        return //so we dont get to the next record on line 35
                     }
                     
                     if let record = record {
