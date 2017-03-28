@@ -46,10 +46,16 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     //printing info in the console to show image type, location, size, orientation, scale and a lot others ......
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        print("Info: \(info)")
-        imageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        //print("Info: \(info)")
         
-    
+        
+        if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            self.imageView.image = originalImage
+            
+            Filters.originalImage = originalImage
+        }
+        
+        
         //dismissing the picker on line 45
         self.dismiss(animated: true, completion: nil)
     }
@@ -77,6 +83,42 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             })
         }
     }
+    
+    @IBAction func filterButtonPressed(_ sender: Any) {
+        
+        guard let image = self.imageView.image else { return } // if there's no image available, leave safely
+        
+        let alertController = UIAlertController(title: "Filter", message: "Please select a filter", preferredStyle: .alert)
+        
+        let blackAndWhiteAction = UIAlertAction(title: "Black & White", style: .default){ (action) in
+            Filters.filter(name: .blackAndWhite, image: image, completion: {(filteredImage) in
+            self.imageView.image = filteredImage
+            })
+            
+        }
+        
+        let vintageAction = UIAlertAction(title: "Vintage", style: .default) { (action) in
+            Filters.filter(name: .vintage, image: image, completion: { (filteredImage) in
+                self.imageView.image = filteredImage
+            })
+        }
+        
+        let resetAction = UIAlertAction(title: "Reset Image", style: .destructive) {(action) in
+            self.imageView.image = Filters.originalImage
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler:nil)
+        
+        alertController.addAction(blackAndWhiteAction)
+        alertController.addAction(vintageAction)
+        alertController.addAction(resetAction)
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+        
+        
+    }
+    
     
     
     func presentActionSheet(){
