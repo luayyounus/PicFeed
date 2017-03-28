@@ -11,6 +11,9 @@ import UIKit
 enum FilterName: String {
     case vintage = "CIPhotoEffectTransfer"
     case blackAndWhite = "CIPhotoEffectMono"
+    case chrome = "CIPhotoEffectChrome"
+    case colorSpace = "CIColorCubeWithColorSpace"
+    case darkAndSexy = "CIColorPolynomial"
 }
 
 

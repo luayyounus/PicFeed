@@ -98,7 +98,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         let blackAndWhiteAction = UIAlertAction(title: "Black & White", style: .default){ (action) in
             Filters.filter(name: .blackAndWhite, image: image, completion: {(filteredImage) in
-            self.imageView.image = filteredImage
+                self.imageView.image = filteredImage
             })
             
         }
@@ -109,6 +109,30 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             })
         }
         
+//        chrome = "CIPhotoEffectChrome"
+//        colorSpace = "CIColorCubeWithColorSpace"
+//        darkAndSexy = "CIColorPolynomial"
+        
+        let chrome = UIAlertAction(title: "Chrome", style: .default) { (action) in
+            Filters.filter(name: .chrome, image: image, completion: { (filteredImage) in
+                self.imageView.image = filteredImage
+            })
+        }
+        
+        let colorSpace = UIAlertAction(title: "Color Space", style: .default) { (action) in
+            Filters.filter(name: .colorSpace, image: image, completion: { (filteredImage) in
+                self.imageView.image = filteredImage
+            })
+        }
+        
+        let darkAndSexy = UIAlertAction(title: "Dark & Sexy", style: .default) { (action) in
+            Filters.filter(name: .darkAndSexy, image: image, completion: { (filteredImage) in
+                self.imageView.image = filteredImage
+            })
+            
+        }
+        
+        
         let resetAction = UIAlertAction(title: "Reset Image", style: .destructive) {(action) in
             self.imageView.image = Filters.originalImage
         }
@@ -117,6 +141,9 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         alertController.addAction(blackAndWhiteAction)
         alertController.addAction(vintageAction)
+        alertController.addAction(chrome)
+        alertController.addAction(colorSpace)
+        alertController.addAction(darkAndSexy)
         alertController.addAction(resetAction)
         alertController.addAction(cancelAction)
         
