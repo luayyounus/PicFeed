@@ -15,19 +15,25 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     @IBOutlet weak var imageView: UIImageView!
 
+    @IBOutlet weak var filterButtonTopConstraint: NSLayoutConstraint!
 
     override func viewDidLoad() { //its over-riding methods from the super class(parent class)
         super.viewDidLoad()
-        print("HEllooooo")
 
         // Do any additional setup after loading the view.
+        
+        filterButtonTopConstraint.constant = 8 //will bounce my object from behind the scenes up to 8 constant
+        
+        UIView.animate(withDuration: 0.4){
+            self.view.layoutIfNeeded()
+        }
     }
 
     func presentImagePickerWith(sourceType: UIImagePickerControllerSourceType){
         
         self.imagePicker.delegate = self //assigning the delegate of the imagePicker to this HomeViewController
         
-        self.imagePicker.sourceType = sourceType //
+        self.imagePicker.sourceType = sourceType
         
         
         
@@ -142,13 +148,24 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             self.presentImagePickerWith(sourceType: .photoLibrary)
         }
         
+        
         let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
+
         
         //add those actions to controller with sheets
-        
         actionSheetController.addAction(cameraAction)
         actionSheetController.addAction(photoAction)
-        actionSheetController.addAction(cancelAction)
+        
+        if UIDevice.current.userInterfaceIdiom != UIUserInterfaceIdiom.pad {
+            actionSheetController.addAction(cancelAction)
+        }
+
+        
+        //for the ipad
+        let popover = actionSheetController.popoverPresentationController
+        popover?.sourceView = imageView
+        popover?.sourceRect = imageView.bounds
+        popover?.permittedArrowDirections = UIPopoverArrowDirection.any //the direction of popover
         
         //chain together those events with present
         self.present(actionSheetController, animated: true, completion: nil)

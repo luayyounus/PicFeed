@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YQA-mR-HAa">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Home View Controller-->
+        <!--Item-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="PicFeed" customModuleProvider="target" sceneMemberID="viewController">
@@ -41,7 +41,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nev-dz-gjD">
-                                <rect key="frame" x="52" y="652.66666666666663" width="310.33333333333331" height="30"/>
+                                <rect key="frame" x="52" y="844.66666666666663" width="310.33333333333331" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Filter">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -61,12 +61,14 @@
                             <constraint firstItem="4jg-f0-FjV" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.75" id="b1V-Ks-yjA"/>
                             <constraint firstItem="nev-dz-gjD" firstAttribute="width" secondItem="4jg-f0-FjV" secondAttribute="width" id="qI8-QH-paP"/>
                             <constraint firstItem="nev-dz-gjD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qgj-Wn-bLH"/>
-                            <constraint firstItem="nev-dz-gjD" firstAttribute="top" secondItem="4jg-f0-FjV" secondAttribute="bottom" constant="8" id="tGL-GE-ETg"/>
+                            <constraint firstItem="nev-dz-gjD" firstAttribute="top" secondItem="4jg-f0-FjV" secondAttribute="bottom" constant="200" id="tGL-GE-ETg"/>
                             <constraint firstItem="4jg-f0-FjV" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="wjs-jC-bgv"/>
                             <constraint firstItem="4jg-f0-FjV" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.75" id="zLV-DF-bDU"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="Tps-Ga-gXI"/>
                     <connections>
+                        <outlet property="filterButtonTopConstraint" destination="tGL-GE-ETg" id="9Ae-98-nJX"/>
                         <outlet property="imageView" destination="4jg-f0-FjV" id="8Mp-Vw-6o4"/>
                     </connections>
                 </viewController>
@@ -76,6 +78,23 @@
                         <action selector="imageTapped:" destination="BYZ-38-t0r" id="Bdc-r4-Kxc"/>
                     </connections>
                 </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1044.9275362318842" y="135.32608695652175"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="STT-Wa-mKR">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="YQA-mR-HAa" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="hiU-df-412">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="06p-OZ-9j5"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pf9-dX-2cf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="135.32608695652175"/>
         </scene>
