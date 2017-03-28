@@ -21,17 +21,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4jg-f0-FjV">
-                                <rect key="frame" x="47" y="100.66666666666669" width="321" height="535"/>
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4jg-f0-FjV">
+                                <rect key="frame" x="106" y="101" width="201" height="535"/>
                                 <color key="backgroundColor" red="1" green="0.70988793594633803" blue="0.40278940048857115" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="1yn-dF-ikk" appends="YES" id="7ct-jp-xgW"/>
                                 </connections>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tql-aQ-oeF">
-                                <rect key="frame" x="187" y="46" width="40" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tql-aQ-oeF">
+                                <rect key="frame" x="106" y="46" width="201" height="47"/>
                                 <color key="backgroundColor" red="0.46237348413709745" green="0.67566227791878175" blue="0.47723855568222401" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="47" id="7jJ-hD-Pa0"/>
+                                    <constraint firstAttribute="width" constant="201" id="QEX-AV-6Uc"/>
+                                </constraints>
                                 <state key="normal" title="POST">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -42,8 +46,12 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="tql-aQ-oeF" firstAttribute="width" secondItem="4jg-f0-FjV" secondAttribute="width" id="7ho-GV-bu8"/>
-                            <constraint firstItem="4jg-f0-FjV" firstAttribute="top" secondItem="tql-aQ-oeF" secondAttribute="bottom" constant="8" id="nN9-Ma-hr9"/>
+                            <constraint firstItem="4jg-f0-FjV" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="1pn-vz-7lS"/>
+                            <constraint firstItem="tql-aQ-oeF" firstAttribute="leading" secondItem="4jg-f0-FjV" secondAttribute="leading" id="Fd5-2H-4kR"/>
+                            <constraint firstItem="tql-aQ-oeF" firstAttribute="width" secondItem="4jg-f0-FjV" secondAttribute="width" id="IUU-u6-rHe"/>
+                            <constraint firstItem="4jg-f0-FjV" firstAttribute="top" secondItem="tql-aQ-oeF" secondAttribute="bottom" constant="8" id="UKy-p4-gSX"/>
+                            <constraint firstItem="tql-aQ-oeF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="WLC-sx-tfc"/>
+                            <constraint firstItem="tql-aQ-oeF" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="26" id="lpN-i1-7hs"/>
                         </constraints>
                     </view>
                     <connections>
@@ -57,7 +65,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="139.13043478260872" y="136.95652173913044"/>
+            <point key="canvasLocation" x="139" y="136"/>
         </scene>
     </scenes>
 </document>
