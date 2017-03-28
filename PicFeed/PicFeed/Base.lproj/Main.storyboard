@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -21,24 +21,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4jg-f0-FjV">
-                                <rect key="frame" x="0.0" y="8" width="414" height="728"/>
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4jg-f0-FjV">
+                                <rect key="frame" x="47" y="100.66666666666669" width="321" height="535"/>
                                 <color key="backgroundColor" red="1" green="0.70988793594633803" blue="0.40278940048857115" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="1yn-dF-ikk" appends="YES" id="7ct-jp-xgW"/>
                                 </connections>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tql-aQ-oeF">
+                                <rect key="frame" x="187" y="46" width="40" height="30"/>
+                                <color key="backgroundColor" red="0.46237348413709745" green="0.67566227791878175" blue="0.47723855568222401" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="POST">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="postButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="h0T-SA-2lx"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="4jg-f0-FjV" secondAttribute="bottom" id="BJd-IY-ZI3"/>
-                            <constraint firstItem="4jg-f0-FjV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="C4z-Ih-Cdl"/>
-                            <constraint firstAttribute="trailing" secondItem="4jg-f0-FjV" secondAttribute="trailing" id="CzM-BI-YjV"/>
-                            <constraint firstItem="4jg-f0-FjV" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Sqg-xc-COv"/>
-                            <constraint firstAttribute="trailing" secondItem="4jg-f0-FjV" secondAttribute="trailing" id="Xo9-g1-Bse"/>
-                            <constraint firstItem="4jg-f0-FjV" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="8" id="mn1-Ua-ub4"/>
-                            <constraint firstItem="4jg-f0-FjV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="uRR-Rf-aTZ"/>
+                            <constraint firstItem="tql-aQ-oeF" firstAttribute="width" secondItem="4jg-f0-FjV" secondAttribute="width" id="7ho-GV-bu8"/>
+                            <constraint firstItem="4jg-f0-FjV" firstAttribute="top" secondItem="tql-aQ-oeF" secondAttribute="bottom" constant="8" id="nN9-Ma-hr9"/>
                         </constraints>
                     </view>
                     <connections>
