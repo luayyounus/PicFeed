@@ -31,7 +31,11 @@ class GalleryViewController: UIViewController {
 //MARK: UICollectionViewdataSource Extension
 extension GalleryViewController : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        <#code#>
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GalleryCell.identifier, for: indexPath) as! GalleryCell
+        
+        cell.post = self.allPosts[indexPath.row]
+        
+        return cell
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return allPosts.count
