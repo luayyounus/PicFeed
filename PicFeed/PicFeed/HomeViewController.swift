@@ -25,7 +25,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        filterButtonTopConstraint.constant = -25
+        filterButtonTopConstraint.constant = -70
         UIView.animate(withDuration: 0.4){
             self.view.layoutIfNeeded()
         }

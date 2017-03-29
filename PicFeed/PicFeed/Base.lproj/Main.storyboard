@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Open Photo-->
+        <!--Home View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="PicFeed" customModuleProvider="target" sceneMemberID="viewController">
@@ -73,7 +73,7 @@
                             <constraint firstItem="4jg-f0-FjV" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" constant="179" id="zLV-DF-bDU"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Open Photo" id="Tps-Ga-gXI"/>
+                    <tabBarItem key="tabBarItem" systemItem="more" id="Tps-Ga-gXI"/>
                     <toolbarItems>
                         <barButtonItem image="addPhoto" width="396" id="vgJ-43-ohc">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -100,6 +100,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="YQA-mR-HAa" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="hiU-df-412">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
