@@ -16,6 +16,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBOutlet weak var imageView: UIImageView!
 
     @IBOutlet weak var filterButtonTopConstraint: NSLayoutConstraint!
+    
 
     override func viewDidLoad() { //its over-riding methods from the super class(parent class)
         super.viewDidLoad()
@@ -24,8 +25,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        filterButtonTopConstraint.constant = 8 //will bounce my object from behind the scenes up to 8 constant
-        
+        filterButtonTopConstraint.constant = -25
         UIView.animate(withDuration: 0.4){
             self.view.layoutIfNeeded()
         }

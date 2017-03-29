@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Item-->
+        <!--Open Photo-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="PicFeed" customModuleProvider="target" sceneMemberID="viewController">
@@ -22,18 +22,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4jg-f0-FjV">
-                                <rect key="frame" x="0.33333333333334281" y="92.666666666666686" width="414" height="552"/>
+                            <imageView alpha="0.69999999999999996" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeHolderBackground" translatesAutoresizingMaskIntoConstraints="NO" id="4jg-f0-FjV">
+                                <rect key="frame" x="-179" y="68" width="593" height="619"/>
                                 <color key="backgroundColor" red="1" green="0.70988793594633803" blue="0.40278940048857115" alpha="0.052975171232876712" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="1yn-dF-ikk" appends="YES" id="7ct-jp-xgW"/>
                                 </connections>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tql-aQ-oeF">
-                                <rect key="frame" x="0.66666666666665719" y="54" width="414" height="30"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="63"/>
                                 <color key="backgroundColor" red="0.46237348413709745" green="0.67566227791878175" blue="0.47723855568222401" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="POST">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="63" id="ZZa-sy-QTn"/>
+                                </constraints>
+                                <state key="normal" title="Post to the Cloud">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
@@ -41,8 +45,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nev-dz-gjD">
-                                <rect key="frame" x="0.33333333333334281" y="844.66666666666663" width="414" height="30"/>
+                                <rect key="frame" x="0.0" y="674" width="414" height="62"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="62" id="UZW-cF-L1N"/>
+                                </constraints>
                                 <state key="normal" title="Filter">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -53,22 +60,28 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="4jg-f0-FjV" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="1pn-vz-7lS"/>
-                            <constraint firstItem="4jg-f0-FjV" firstAttribute="top" secondItem="tql-aQ-oeF" secondAttribute="bottom" constant="8.6699999999999999" id="RE2-b9-dWS"/>
-                            <constraint firstItem="4jg-f0-FjV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ROq-Dg-XyL"/>
+                            <constraint firstItem="4jg-f0-FjV" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="9.5" id="1pn-vz-7lS"/>
+                            <constraint firstItem="4jg-f0-FjV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-89.5" id="ROq-Dg-XyL"/>
                             <constraint firstItem="tql-aQ-oeF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Te3-Gn-YVS"/>
-                            <constraint firstItem="tql-aQ-oeF" firstAttribute="width" secondItem="4jg-f0-FjV" secondAttribute="width" id="Uca-Fy-Otr"/>
-                            <constraint firstItem="4jg-f0-FjV" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.75" id="b1V-Ks-yjA"/>
-                            <constraint firstItem="nev-dz-gjD" firstAttribute="width" secondItem="4jg-f0-FjV" secondAttribute="width" id="qI8-QH-paP"/>
+                            <constraint firstItem="tql-aQ-oeF" firstAttribute="width" secondItem="4jg-f0-FjV" secondAttribute="width" constant="-179" id="Uca-Fy-Otr"/>
+                            <constraint firstItem="nev-dz-gjD" firstAttribute="top" secondItem="4jg-f0-FjV" secondAttribute="bottom" constant="-13" id="VrS-80-tT6"/>
+                            <constraint firstItem="4jg-f0-FjV" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.75" constant="67" id="b1V-Ks-yjA"/>
+                            <constraint firstItem="nev-dz-gjD" firstAttribute="width" secondItem="4jg-f0-FjV" secondAttribute="width" constant="-179" id="qI8-QH-paP"/>
                             <constraint firstItem="nev-dz-gjD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qgj-Wn-bLH"/>
-                            <constraint firstItem="nev-dz-gjD" firstAttribute="top" secondItem="4jg-f0-FjV" secondAttribute="bottom" constant="200" id="tGL-GE-ETg"/>
-                            <constraint firstItem="4jg-f0-FjV" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="wjs-jC-bgv"/>
-                            <constraint firstItem="4jg-f0-FjV" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="zLV-DF-bDU"/>
+                            <constraint firstItem="4jg-f0-FjV" firstAttribute="top" secondItem="tql-aQ-oeF" secondAttribute="bottom" constant="-23" id="wHH-nA-x3b"/>
+                            <constraint firstItem="4jg-f0-FjV" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="9.5" id="wjs-jC-bgv"/>
+                            <constraint firstItem="4jg-f0-FjV" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" constant="179" id="zLV-DF-bDU"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="Tps-Ga-gXI"/>
+                    <tabBarItem key="tabBarItem" title="Open Photo" id="Tps-Ga-gXI"/>
+                    <toolbarItems>
+                        <barButtonItem image="addPhoto" width="396" id="vgJ-43-ohc">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
+                    </toolbarItems>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="filterButtonTopConstraint" destination="tGL-GE-ETg" id="9Ae-98-nJX"/>
+                        <outlet property="filterButtonTopConstraint" destination="VrS-80-tT6" id="Ujn-m9-nSg"/>
                         <outlet property="imageView" destination="4jg-f0-FjV" id="8Mp-Vw-6o4"/>
                     </connections>
                 </viewController>
@@ -99,4 +112,8 @@
             <point key="canvasLocation" x="137.68115942028987" y="135.32608695652175"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="addPhoto" width="42" height="42"/>
+        <image name="placeHolderBackground" width="800" height="534"/>
+    </resources>
 </document>
