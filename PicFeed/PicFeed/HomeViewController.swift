@@ -4,7 +4,7 @@
 //
 //  Created by Luay Younus on 3/27/17.
 //  Copyright © 2017 Luay Younus. All rights reserved.
-//
+
 
 import UIKit
 
@@ -15,19 +15,31 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     @IBOutlet weak var imageView: UIImageView!
 
+    @IBOutlet weak var filterButtonTopConstraint: NSLayoutConstraint!
+    
 
     override func viewDidLoad() { //its over-riding methods from the super class(parent class)
         super.viewDidLoad()
-        print("HEllooooo")
 
         // Do any additional setup after loading the view.
     }
-
+    
+    override func viewDidAppear(_ animated: Bool) {
+        filterButtonTopConstraint.constant = -70
+        UIView.animate(withDuration: 0.4){
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    func animateOriginalImage(imageView: UIImageView){
+        UIView.transition(with: imageView, duration: 2, options: .curveEaseIn, animations: nil, completion: nil)
+    }
+    
     func presentImagePickerWith(sourceType: UIImagePickerControllerSourceType){
         
         self.imagePicker.delegate = self //assigning the delegate of the imagePicker to this HomeViewController
         
-        self.imagePicker.sourceType = sourceType //
+        self.imagePicker.sourceType = sourceType
         
         
         
@@ -46,12 +58,24 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     //printing info in the console to show image type, location, size, orientation, scale and a lot others ......
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        print("Info: \(info)")
-        imageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        //print("Info: \(info)")
+        var image = UIImage()
         
-    
+        if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            image = originalImage
+            Filters.originalImage = originalImage
+        }
+        
         //dismissing the picker on line 45
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true) {
+            // After dismissing picker controller, do the transition
+            UIView.transition(with: self.imageView,
+                              duration: 0.5,
+                              options: .transitionCrossDissolve,
+                              animations: {
+                                self.imageView.image = image
+            }, completion: nil)
+        }
     }
 
     @IBAction func imageTapped(_ sender: Any) {
@@ -78,6 +102,69 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         }
     }
     
+    @IBAction func filterButtonPressed(_ sender: Any) {
+        
+        guard let image = self.imageView.image else { return } // if there's no image available, leave safely
+        
+        let alertController = UIAlertController(title: "Filter", message: "Please select a filter", preferredStyle: .alert)
+        
+        let blackAndWhiteAction = UIAlertAction(title: "Black & White", style: .default){ (action) in
+            Filters.filter(name: .blackAndWhite, image: image, completion: {(filteredImage) in
+                self.imageView.image = filteredImage
+            })
+            
+        }
+        
+        let vintageAction = UIAlertAction(title: "Vintage", style: .default) { (action) in
+            Filters.filter(name: .vintage, image: image, completion: { (filteredImage) in
+                self.imageView.image = filteredImage
+            })
+        }
+        
+//        chrome = "CIPhotoEffectChrome"
+//        colorSpace = "CIColorCubeWithColorSpace"
+//        darkAndSexy = "CIColorPolynomial"
+        
+        let chrome = UIAlertAction(title: "Chrome", style: .default) { (action) in
+            Filters.filter(name: .chrome, image: image, completion: { (filteredImage) in
+                self.imageView.image = filteredImage
+            })
+        }
+        
+        let colorSpace = UIAlertAction(title: "Color Space", style: .default) { (action) in
+            Filters.filter(name: .colorSpace, image: image, completion: { (filteredImage) in
+                self.imageView.image = filteredImage
+            })
+        }
+        
+        let darkAndSexy = UIAlertAction(title: "Dark & Sexy", style: .default) { (action) in
+            Filters.filter(name: .darkAndSexy, image: image, completion: { (filteredImage) in
+                self.imageView.image = filteredImage
+            })
+            
+        }
+        
+        
+        let resetAction = UIAlertAction(title: "Reset Image", style: .destructive) {(action) in
+            self.imageView.image = Filters.originalImage
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler:nil)
+        
+        alertController.addAction(blackAndWhiteAction)
+        alertController.addAction(vintageAction)
+        alertController.addAction(chrome)
+        alertController.addAction(colorSpace)
+        alertController.addAction(darkAndSexy)
+        alertController.addAction(resetAction)
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+        
+        
+    }
+    
+    
     
     func presentActionSheet(){
         
@@ -100,13 +187,24 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             self.presentImagePickerWith(sourceType: .photoLibrary)
         }
         
+        
         let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
+
         
         //add those actions to controller with sheets
-        
         actionSheetController.addAction(cameraAction)
         actionSheetController.addAction(photoAction)
-        actionSheetController.addAction(cancelAction)
+        
+        if UIDevice.current.userInterfaceIdiom != UIUserInterfaceIdiom.pad {
+            actionSheetController.addAction(cancelAction)
+        }
+
+        
+        //for the ipad
+        let popover = actionSheetController.popoverPresentationController
+        popover?.sourceView = imageView
+        popover?.sourceRect = imageView.bounds
+        popover?.permittedArrowDirections = UIPopoverArrowDirection.any //the direction of popover
         
         //chain together those events with present
         self.present(actionSheetController, animated: true, completion: nil)

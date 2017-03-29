@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YQA-mR-HAa">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,40 +22,66 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4jg-f0-FjV">
-                                <rect key="frame" x="106" y="101" width="201" height="535"/>
-                                <color key="backgroundColor" red="1" green="0.70988793594633803" blue="0.40278940048857115" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <imageView alpha="0.69999999999999996" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeHolderBackground" translatesAutoresizingMaskIntoConstraints="NO" id="4jg-f0-FjV">
+                                <rect key="frame" x="-179" y="68" width="593" height="619"/>
+                                <color key="backgroundColor" red="1" green="0.70988793594633803" blue="0.40278940048857115" alpha="0.052975171232876712" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="1yn-dF-ikk" appends="YES" id="7ct-jp-xgW"/>
                                 </connections>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tql-aQ-oeF">
-                                <rect key="frame" x="106" y="46" width="201" height="47"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="63"/>
                                 <color key="backgroundColor" red="0.46237348413709745" green="0.67566227791878175" blue="0.47723855568222401" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="47" id="7jJ-hD-Pa0"/>
-                                    <constraint firstAttribute="width" constant="201" id="QEX-AV-6Uc"/>
+                                    <constraint firstAttribute="height" constant="63" id="ZZa-sy-QTn"/>
                                 </constraints>
-                                <state key="normal" title="POST">
+                                <state key="normal" title="Post to the Cloud">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="postButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="h0T-SA-2lx"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nev-dz-gjD">
+                                <rect key="frame" x="0.0" y="674" width="414" height="62"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="62" id="UZW-cF-L1N"/>
+                                </constraints>
+                                <state key="normal" title="Filter">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="filterButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OCM-kg-L9u"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="4jg-f0-FjV" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="1pn-vz-7lS"/>
-                            <constraint firstItem="tql-aQ-oeF" firstAttribute="leading" secondItem="4jg-f0-FjV" secondAttribute="leading" id="Fd5-2H-4kR"/>
-                            <constraint firstItem="tql-aQ-oeF" firstAttribute="width" secondItem="4jg-f0-FjV" secondAttribute="width" id="IUU-u6-rHe"/>
-                            <constraint firstItem="4jg-f0-FjV" firstAttribute="top" secondItem="tql-aQ-oeF" secondAttribute="bottom" constant="8" id="UKy-p4-gSX"/>
-                            <constraint firstItem="tql-aQ-oeF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="WLC-sx-tfc"/>
-                            <constraint firstItem="tql-aQ-oeF" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="26" id="lpN-i1-7hs"/>
+                            <constraint firstItem="4jg-f0-FjV" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="9.5" id="1pn-vz-7lS"/>
+                            <constraint firstItem="4jg-f0-FjV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-89.5" id="ROq-Dg-XyL"/>
+                            <constraint firstItem="tql-aQ-oeF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Te3-Gn-YVS"/>
+                            <constraint firstItem="tql-aQ-oeF" firstAttribute="width" secondItem="4jg-f0-FjV" secondAttribute="width" constant="-179" id="Uca-Fy-Otr"/>
+                            <constraint firstItem="nev-dz-gjD" firstAttribute="top" secondItem="4jg-f0-FjV" secondAttribute="bottom" constant="-13" id="VrS-80-tT6"/>
+                            <constraint firstItem="4jg-f0-FjV" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.75" constant="67" id="b1V-Ks-yjA"/>
+                            <constraint firstItem="nev-dz-gjD" firstAttribute="width" secondItem="4jg-f0-FjV" secondAttribute="width" constant="-179" id="qI8-QH-paP"/>
+                            <constraint firstItem="nev-dz-gjD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qgj-Wn-bLH"/>
+                            <constraint firstItem="4jg-f0-FjV" firstAttribute="top" secondItem="tql-aQ-oeF" secondAttribute="bottom" constant="-23" id="wHH-nA-x3b"/>
+                            <constraint firstItem="4jg-f0-FjV" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="9.5" id="wjs-jC-bgv"/>
+                            <constraint firstItem="4jg-f0-FjV" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" constant="179" id="zLV-DF-bDU"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" systemItem="more" id="Tps-Ga-gXI"/>
+                    <toolbarItems>
+                        <barButtonItem image="addPhoto" width="396" id="vgJ-43-ohc">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
+                    </toolbarItems>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="filterButtonTopConstraint" destination="VrS-80-tT6" id="Ujn-m9-nSg"/>
                         <outlet property="imageView" destination="4jg-f0-FjV" id="8Mp-Vw-6o4"/>
                     </connections>
                 </viewController>
@@ -65,7 +92,29 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="139" y="136"/>
+            <point key="canvasLocation" x="1044.9275362318842" y="135.32608695652175"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="STT-Wa-mKR">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="YQA-mR-HAa" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="hiU-df-412">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="06p-OZ-9j5"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pf9-dX-2cf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="135.32608695652175"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="addPhoto" width="42" height="42"/>
+        <image name="placeHolderBackground" width="800" height="534"/>
+    </resources>
 </document>
