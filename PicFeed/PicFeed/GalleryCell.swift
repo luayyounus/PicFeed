@@ -11,9 +11,12 @@ import UIKit
 class GalleryCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     
+    @IBOutlet weak var imageDateCreated: UILabel!
+    
     var post: Post! {
         didSet {
             self.imageView.image = post.image
+            self.imageDateCreated.text = DateFormatter.localizedString(from: post.date!, dateStyle: .short, timeStyle: .short)
         }
     }
     

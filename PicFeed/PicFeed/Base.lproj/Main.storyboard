@@ -22,8 +22,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView alpha="0.69999999999999996" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="placeHolderBackground" translatesAutoresizingMaskIntoConstraints="NO" id="4jg-f0-FjV">
-                                <rect key="frame" x="-179" y="90" width="593" height="597"/>
+                            <imageView alpha="0.69999999999999996" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeHolderBackground" translatesAutoresizingMaskIntoConstraints="NO" id="4jg-f0-FjV">
+                                <rect key="frame" x="-179" y="68" width="593" height="619"/>
                                 <color key="backgroundColor" red="1" green="0.70988793594633803" blue="0.40278940048857115" alpha="0.052975171232876712" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
@@ -126,15 +126,27 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XqR-mm-xSL">
                                                     <rect key="frame" x="0.0" y="0.0" width="135" height="137"/>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HELLO" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="No0-40-Urc">
+                                                    <rect key="frame" x="0.0" y="116" width="135" height="21"/>
+                                                    <color key="backgroundColor" red="0.43288565430802006" green="0.69772459863185665" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
+                                                    <color key="textColor" red="1" green="0.98869167621983456" blue="0.57594964222025058" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </view>
                                         <constraints>
                                             <constraint firstItem="XqR-mm-xSL" firstAttribute="top" secondItem="YfN-6w-Vrh" secondAttribute="top" id="D4l-co-jS6"/>
                                             <constraint firstAttribute="trailing" secondItem="XqR-mm-xSL" secondAttribute="trailing" id="Dzt-ik-hj6"/>
                                             <constraint firstItem="XqR-mm-xSL" firstAttribute="leading" secondItem="YfN-6w-Vrh" secondAttribute="leading" id="F0q-z9-NC1"/>
+                                            <constraint firstItem="No0-40-Urc" firstAttribute="centerX" secondItem="YfN-6w-Vrh" secondAttribute="centerX" id="FFg-D8-lCJ"/>
                                             <constraint firstAttribute="bottom" secondItem="XqR-mm-xSL" secondAttribute="bottom" id="Jql-sP-eos"/>
+                                            <constraint firstAttribute="bottom" secondItem="No0-40-Urc" secondAttribute="bottom" id="esl-dp-kFi"/>
+                                            <constraint firstItem="No0-40-Urc" firstAttribute="width" secondItem="XqR-mm-xSL" secondAttribute="width" id="xs5-Le-eJa"/>
+                                            <constraint firstItem="XqR-mm-xSL" firstAttribute="top" secondItem="YfN-6w-Vrh" secondAttribute="top" id="zo6-gE-mML"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="imageDateCreated" destination="No0-40-Urc" id="G89-ED-KXe"/>
                                             <outlet property="imageView" destination="XqR-mm-xSL" id="UUM-Q7-Xoh"/>
                                         </connections>
                                     </collectionViewCell>

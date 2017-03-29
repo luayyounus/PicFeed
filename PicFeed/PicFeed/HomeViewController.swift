@@ -88,7 +88,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         if let image = self.imageView.image {
             
-            let newPost = Post(image: image)
+            let newPost = Post(image: image, date: nil)
             CloudKit.shared.save(post: newPost, completion: { (success) in
                 
                 if success {

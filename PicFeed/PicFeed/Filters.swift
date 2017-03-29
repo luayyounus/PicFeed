@@ -38,7 +38,7 @@ class Filters {
     let ciContext = CIContext()
     
     
-    static var originalImage = UIImage() //statis var applys directly to the type
+    static var originalImage = UIImage() //static var applys directly to the type
     
     class func filter(name: FilterName, image: UIImage, completion: @escaping FilterCompletion){
         

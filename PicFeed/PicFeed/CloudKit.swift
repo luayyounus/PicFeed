@@ -22,6 +22,7 @@ class CloudKit {
         return self.container.privateCloudDatabase
     }
     
+    
     func save(post: Post, completion: @escaping SuccessCompletion){ //@escaping goes over the network asynchonously
         
         do {
@@ -49,6 +50,11 @@ class CloudKit {
     
     func getPost(completion: @escaping PostsCompletion){
         
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
+        
+        
         let postQuery = CKQuery(recordType: "Post", predicate: NSPredicate(value: true))
         
         self.privateDatabase.perform(postQuery, inZoneWith: nil) { (records, error) in
@@ -65,12 +71,13 @@ class CloudKit {
                 
                 for record in records {
                     
+                    let dateFromRecord = record.creationDate
+                    
                     if let asset = record["image"] as? CKAsset{
-                        
                         let path = asset.fileURL.path
                         
                         if let image = UIImage(contentsOfFile: path){
-                            let newPost = Post(image: image)
+                            let newPost = Post(image: image,date: dateFromRecord)
                             
                             posts.append(newPost)
                         }
@@ -80,9 +87,7 @@ class CloudKit {
                 OperationQueue.main.addOperation {
                     completion(posts)
                 }
-                
             }
         }
-        
     }
 }
