@@ -23,15 +23,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4jg-f0-FjV">
-                                <rect key="frame" x="52" y="92.666666666666686" width="310.33333333333331" height="552"/>
-                                <color key="backgroundColor" red="1" green="0.70988793594633803" blue="0.40278940048857115" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="0.33333333333334281" y="92.666666666666686" width="414" height="552"/>
+                                <color key="backgroundColor" red="1" green="0.70988793594633803" blue="0.40278940048857115" alpha="0.052975171232876712" colorSpace="custom" customColorSpace="sRGB"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="1yn-dF-ikk" appends="YES" id="7ct-jp-xgW"/>
                                 </connections>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tql-aQ-oeF">
-                                <rect key="frame" x="52.333333333333343" y="54" width="310.33333333333337" height="30"/>
+                                <rect key="frame" x="0.66666666666665719" y="54" width="414" height="30"/>
                                 <color key="backgroundColor" red="0.46237348413709745" green="0.67566227791878175" blue="0.47723855568222401" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="POST">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -41,7 +41,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nev-dz-gjD">
-                                <rect key="frame" x="52" y="844.66666666666663" width="310.33333333333331" height="30"/>
+                                <rect key="frame" x="0.33333333333334281" y="844.66666666666663" width="414" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Filter">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -63,7 +63,7 @@
                             <constraint firstItem="nev-dz-gjD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qgj-Wn-bLH"/>
                             <constraint firstItem="nev-dz-gjD" firstAttribute="top" secondItem="4jg-f0-FjV" secondAttribute="bottom" constant="200" id="tGL-GE-ETg"/>
                             <constraint firstItem="4jg-f0-FjV" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="wjs-jC-bgv"/>
-                            <constraint firstItem="4jg-f0-FjV" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.75" id="zLV-DF-bDU"/>
+                            <constraint firstItem="4jg-f0-FjV" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="zLV-DF-bDU"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="Tps-Ga-gXI"/>

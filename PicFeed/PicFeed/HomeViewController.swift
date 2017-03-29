@@ -4,7 +4,7 @@
 //
 //  Created by Luay Younus on 3/27/17.
 //  Copyright © 2017 Luay Younus. All rights reserved.
-//
+
 
 import UIKit
 
@@ -21,14 +21,20 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         filterButtonTopConstraint.constant = 8 //will bounce my object from behind the scenes up to 8 constant
         
         UIView.animate(withDuration: 0.4){
             self.view.layoutIfNeeded()
         }
     }
-
+    
+    func animateOriginalImage(imageView: UIImageView){
+        UIView.transition(with: imageView, duration: 2, options: .curveEaseIn, animations: nil, completion: nil)
+    }
+    
     func presentImagePickerWith(sourceType: UIImagePickerControllerSourceType){
         
         self.imagePicker.delegate = self //assigning the delegate of the imagePicker to this HomeViewController
@@ -53,17 +59,23 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         //print("Info: \(info)")
-        
+        var image = UIImage()
         
         if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            self.imageView.image = originalImage
-            
+            image = originalImage
             Filters.originalImage = originalImage
         }
         
-        
         //dismissing the picker on line 45
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true) {
+            // After dismissing picker controller, do the transition
+            UIView.transition(with: self.imageView,
+                              duration: 0.5,
+                              options: .transitionCrossDissolve,
+                              animations: {
+                                self.imageView.image = image
+            }, completion: nil)
+        }
     }
 
     @IBAction func imageTapped(_ sender: Any) {
