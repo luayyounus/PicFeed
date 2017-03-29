@@ -22,7 +22,22 @@ class GalleryViewController: UIViewController {
         super.viewDidLoad()
         
         self.collectionView.dataSource = self
+        self.collectionView.collectionViewLayout = GalleryCollectionViewLayout(columns: 2)
 
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        update()
+    }
+    
+    func update(){
+        CloudKit.shared.getPost { (posts) in
+            if let posts = posts {
+                self.allPosts = posts
+            }
+        }
     }
 
 }
