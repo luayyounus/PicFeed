@@ -50,12 +50,12 @@ class CloudKit {
     
     func getPost(completion: @escaping PostsCompletion){
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .none
-        
-        
         let postQuery = CKQuery(recordType: "Post", predicate: NSPredicate(value: true))
+        
+        let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: true)
+
+        
+        postQuery.sortDescriptors = [sortDescriptor]
         
         self.privateDatabase.perform(postQuery, inZoneWith: nil) { (records, error) in
          

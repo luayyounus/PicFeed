@@ -22,7 +22,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView alpha="0.69999999999999996" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeHolderBackground" translatesAutoresizingMaskIntoConstraints="NO" id="4jg-f0-FjV">
+                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeHolderBackground" translatesAutoresizingMaskIntoConstraints="NO" id="4jg-f0-FjV">
                                 <rect key="frame" x="-179" y="68" width="593" height="619"/>
                                 <color key="backgroundColor" red="1" green="0.70988793594633803" blue="0.40278940048857115" alpha="0.052975171232876712" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
