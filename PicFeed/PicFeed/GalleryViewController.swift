@@ -47,6 +47,30 @@ class GalleryViewController: UIViewController {
             }
         }
     }
+    
+    
+    @IBAction func userPinched(_ sender: UIPinchGestureRecognizer) {
+        
+        guard let layout = collectionView.collectionViewLayout as? GalleryCollectionViewLayout else {return}
+        
+        switch sender.state {
+        case .began:
+            print("User Pinched!")
+        case .changed:
+            print("<-----User pinch changed!----->")
+        case .ended:
+            print("Pinch ended.")
+            
+            //ternary operator ( vs. nil coalesing is different that uses ??)
+            let columns = sender.velocity > 0 ? layout.columns - 1 : layout.columns + 1
+            
+            if columns < 1 || columns > 10 {return}
+            
+            collectionView.setCollectionViewLayout(GalleryCollectionViewLayout(columns:columns), animated: true)
+        default:
+            print("Unknown sender state.")
+        }
+    }
 
 }
 

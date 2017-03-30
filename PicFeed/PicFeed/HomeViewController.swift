@@ -6,6 +6,7 @@
 //  Copyright © 2017 Luay Younus. All rights reserved.
 
 import UIKit
+import Social
 
 class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -18,9 +19,9 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBOutlet weak var filtersOption: UIButton!
     @IBOutlet weak var collectionViewHeightConstraint: NSLayoutConstraint!
     
-    let imagePicker = UIImagePickerController() //initializing it in memory
+    let imagePicker = UIImagePickerController()
     
-    override func viewDidLoad() { //its over-riding methods from the super class(parent class)
+    override func viewDidLoad() {
         super.viewDidLoad()
         
         self.collectionView.dataSource = self
@@ -28,8 +29,12 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         setupGalleryDelegate()
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     func setupGalleryDelegate(){
-        if let tabBarController = self.tabBarController { //if we have a tab bar controller
+        if let tabBarController = self.tabBarController {
             guard let viewController = tabBarController.viewControllers else { return }
             
             guard let galleryController = viewController[1] as? GalleryViewController else {return}
@@ -123,14 +128,34 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     @IBAction func filterButtonPressed(_ sender: Any) {
         
-        guard self.imageView.image != nil else { return } // if there's no image available, leave safely
-        
-        self.collectionViewHeightConstraint.constant = 150
+        guard let image = self.imageView.image  else { return } // if there's no image available, leave safely
+        switch self.collectionViewHeightConstraint.constant {
+        case CGFloat(0):
+            self.collectionViewHeightConstraint.constant = 150
+        case CGFloat(150):
+            self.collectionViewHeightConstraint.constant = 0
+        default:
+            return
+        }
         
         UIView.animate(withDuration: 0.5){
             self.view.layoutIfNeeded()
         }
+    
         
+    }
+    
+    
+    @IBAction func userLongPressed(_ sender: UILongPressGestureRecognizer) {
+        
+        if SLComposeViewController.isAvailable(forServiceType: SLServiceTypeTwitter){
+            
+            guard let composeController = SLComposeViewController(forServiceType: SLServiceTypeTwitter) else {return}
+        
+        composeController.add(self.imageView.image)
+        
+        self.present(composeController, animated: true, completion: nil)
+        }
     }
     
     
@@ -182,7 +207,15 @@ extension HomeViewController : UICollectionViewDataSource {
         
         guard let originalImage = Filters.originalImage else { return filterCell }
         
-        guard let resizedImage = originalImage.resize(size: CGSize(width: 150 , height: 150)) else { return filterCell }
+        let targetSize = CGFloat(150)
+        var resizeFactor : CGFloat
+        if originalImage.size.height > originalImage.size.width {
+            resizeFactor = targetSize / originalImage.size.width
+        } else {
+            resizeFactor = targetSize / originalImage.size.height
+        }
+        
+        guard let resizedImage = originalImage.resize(size: CGSize(width: resizeFactor * originalImage.size.width , height: resizeFactor * originalImage.size.height)) else { return filterCell }
         
         let filterName = self.filterNames[indexPath.row]
         
@@ -199,9 +232,13 @@ extension HomeViewController : UICollectionViewDataSource {
 }
 
 extension HomeViewController : GalleryViewControllerDelegate{
+    
     func galleryController(didSelect image: UIImage){
+        
         self.imageView.image = image
+        Filters.originalImage = image
         self.tabBarController?.selectedIndex = 0
+        
     }
 }
 
