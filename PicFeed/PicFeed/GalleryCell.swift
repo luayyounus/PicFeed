@@ -13,6 +13,8 @@ class GalleryCell: UICollectionViewCell {
     
     @IBOutlet weak var imageDateCreated: UILabel!
     
+    
+    
     var post: Post! {
         didSet {
             self.imageView.image = post.image

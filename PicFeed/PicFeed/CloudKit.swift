@@ -16,6 +16,8 @@ typealias PostsCompletion = ([Post]?)->() //for fetch
 class CloudKit {
     static let shared = CloudKit()
     
+    var globalPostsForFooter = Int()
+    
     let container = CKContainer.default()
     
     var privateDatabase : CKDatabase {
@@ -83,6 +85,8 @@ class CloudKit {
                         }
                     }
                 }
+                
+                self.globalPostsForFooter = posts.count
                 
                 OperationQueue.main.addOperation {
                     completion(posts)
