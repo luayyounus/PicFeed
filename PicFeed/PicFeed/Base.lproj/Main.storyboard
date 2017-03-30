@@ -67,16 +67,28 @@
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ajz-pl-4vb"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ajz-pl-4vb">
+                                                    <rect key="frame" x="20" y="13" width="81" height="79"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WXH-Xb-UVU">
+                                                    <rect key="frame" x="40" y="46" width="42" height="21"/>
+                                                    <color key="backgroundColor" red="1" green="0.39059051278630053" blue="0.38909111943815344" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="Ajz-pl-4vb" secondAttribute="trailing" id="15T-xH-Asf"/>
-                                            <constraint firstAttribute="bottom" secondItem="Ajz-pl-4vb" secondAttribute="bottom" id="YGP-NA-5cz"/>
-                                            <constraint firstItem="Ajz-pl-4vb" firstAttribute="leading" secondItem="E3N-5u-RNc" secondAttribute="leading" id="ccs-En-cWG"/>
-                                            <constraint firstItem="Ajz-pl-4vb" firstAttribute="top" secondItem="E3N-5u-RNc" secondAttribute="top" id="m76-o2-itU"/>
+                                            <constraint firstAttribute="trailing" secondItem="Ajz-pl-4vb" secondAttribute="trailing" constant="21" id="15T-xH-Asf"/>
+                                            <constraint firstAttribute="bottom" secondItem="Ajz-pl-4vb" secondAttribute="bottom" constant="20" id="YGP-NA-5cz"/>
+                                            <constraint firstItem="Ajz-pl-4vb" firstAttribute="leading" secondItem="E3N-5u-RNc" secondAttribute="leading" constant="20" id="ccs-En-cWG"/>
+                                            <constraint firstItem="WXH-Xb-UVU" firstAttribute="centerX" secondItem="E3N-5u-RNc" secondAttribute="centerX" id="ch8-nU-nfd"/>
+                                            <constraint firstItem="Ajz-pl-4vb" firstAttribute="top" secondItem="E3N-5u-RNc" secondAttribute="top" constant="13" id="m76-o2-itU"/>
+                                            <constraint firstItem="WXH-Xb-UVU" firstAttribute="centerY" secondItem="E3N-5u-RNc" secondAttribute="centerY" id="oPM-Al-FW1"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="filterName" destination="WXH-Xb-UVU" id="WXj-A6-GVe"/>
                                             <outlet property="imageView" destination="Ajz-pl-4vb" id="9YD-nO-S79"/>
                                         </connections>
                                     </collectionViewCell>

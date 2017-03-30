@@ -10,11 +10,12 @@ import Social
 
 class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    let filterNames = [FilterName.vintage, FilterName.blackAndWhite, FilterName.chrome, FilterName.colorSpace, FilterName.darkAndSexy]
+    let filterNames = [FilterName.vintage, FilterName.blackAndWhite, FilterName.chrome, FilterName.colorSpace, FilterName.dark]
     
     @IBOutlet weak var mainLabel: UILabel!
     @IBOutlet weak var saveToCloudOption: UIButton!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var filterName: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var filtersOption: UIButton!
     @IBOutlet weak var collectionViewHeightConstraint: NSLayoutConstraint!
@@ -221,6 +222,7 @@ extension HomeViewController : UICollectionViewDataSource {
         
         Filters.filter(name: filterName, image: resizedImage) { (filteredImage) in
             filterCell.imageView.image = filteredImage
+            filterCell.filterName.text = Filters.sharedFilters.filterNamesArray[indexPath.row]
         }
         
         return filterCell

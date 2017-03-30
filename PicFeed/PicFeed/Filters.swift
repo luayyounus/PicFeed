@@ -13,9 +13,8 @@ enum FilterName: String {
     case blackAndWhite = "CIPhotoEffectMono"
     case chrome = "CIPhotoEffectChrome"
     case colorSpace = "CIColorCubeWithColorSpace"
-    case darkAndSexy = "CIColorPolynomial"
+    case dark = "CIColorPolynomial"
 }
-
 
 
 //CIs are not thread-safe so we created the typealias
@@ -25,6 +24,9 @@ class Filters {
     
     static var originalImage : UIImage? //static var applys directly to the type
 
+    let filterNamesArray = ["vintage","blackAndWhite","chrome","colorSpace","dark"]
+
+    
     let ciContext = CIContext()
     
     static let sharedFilters: Filters = {
@@ -55,7 +57,14 @@ class Filters {
         
             if let cgImage = sharedFilters.ciContext.createCGImage(outputImage, from: outputImage.extent){ //extent takes the whole image and draw it exactly on the cloud
                 
-                let finalImage = UIImage(cgImage: cgImage)
+//                let finalImage = UIImage(cgImage: cgImage)
+                
+                let orientation = image.imageOrientation
+                
+                let scaledImage = image.scale
+                
+                let finalImage = UIImage(cgImage: cgImage, scale: scaledImage, orientation: orientation)
+                
                 
                 OperationQueue.main.addOperation {
                     completion(finalImage)
