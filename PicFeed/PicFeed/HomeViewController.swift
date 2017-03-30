@@ -123,7 +123,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     @IBAction func filterButtonPressed(_ sender: Any) {
         
-        guard let image = self.imageView.image else { return } // if there's no image available, leave safely
+        guard self.imageView.image != nil else { return } // if there's no image available, leave safely
         
         self.collectionViewHeightConstraint.constant = 150
         

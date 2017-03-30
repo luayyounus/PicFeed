@@ -33,8 +33,22 @@
                                     <outletCollection property="gestureRecognizers" destination="1yn-dF-ikk" appends="YES" id="7ct-jp-xgW"/>
                                 </connections>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tql-aQ-oeF">
+                                <rect key="frame" x="220" y="639" width="160" height="40"/>
+                                <color key="backgroundColor" red="0.46237348413709745" green="0.67566227791878175" blue="0.47723855568222401" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="JQi-qo-sqN"/>
+                                    <constraint firstAttribute="width" constant="160" id="NQg-tB-K4j"/>
+                                </constraints>
+                                <state key="normal" title="Save to Cloud">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="postButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="h0T-SA-2lx"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nev-dz-gjD">
-                                <rect key="frame" x="37" y="489" width="160" height="40"/>
+                                <rect key="frame" x="37" y="639" width="160" height="40"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="RYL-kv-cbW"/>
@@ -47,25 +61,6 @@
                                     <action selector="filterButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OCM-kg-L9u"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Touch to Select a Photo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sMD-7k-pTN">
-                                <rect key="frame" x="107" y="170" width="200" height="58"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
-                                <color key="tintColor" red="0.78647681081171683" green="1" blue="0.67433664227014067" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="58" id="0Lp-ad-QAC"/>
-                                    <constraint firstAttribute="width" constant="200" id="8j4-UF-OgO"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                                <size key="shadowOffset" width="0.0" height="0.0"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="8"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                            </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ae9-5C-dlm">
                                 <rect key="frame" x="0.0" y="687" width="414" height="0.0"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -84,9 +79,7 @@
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ajz-pl-4vb">
-                                                    <rect key="frame" x="0.0" y="0.0" width="122" height="112"/>
-                                                </imageView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ajz-pl-4vb"/>
                                             </subviews>
                                         </view>
                                         <constraints>
@@ -101,34 +94,39 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tql-aQ-oeF">
-                                <rect key="frame" x="224" y="489" width="160" height="40"/>
-                                <color key="backgroundColor" red="0.46237348413709745" green="0.67566227791878175" blue="0.47723855568222401" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Touch to Select a Photo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sMD-7k-pTN">
+                                <rect key="frame" x="107" y="70" width="200" height="58"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <color key="tintColor" red="0.78647681081171683" green="1" blue="0.67433664227014067" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="JQi-qo-sqN"/>
-                                    <constraint firstAttribute="width" constant="160" id="NQg-tB-K4j"/>
+                                    <constraint firstAttribute="height" constant="58" id="0Lp-ad-QAC"/>
+                                    <constraint firstAttribute="width" constant="200" id="8j4-UF-OgO"/>
                                 </constraints>
-                                <state key="normal" title="Save to Cloud">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="postButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="h0T-SA-2lx"/>
-                                </connections>
-                            </button>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <size key="shadowOffset" width="0.0" height="0.0"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="4jg-f0-FjV" secondAttribute="trailing" id="7zU-io-tOK"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="nev-dz-gjD" secondAttribute="bottom" constant="158" id="9R3-7l-IY3"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="nev-dz-gjD" secondAttribute="bottom" constant="8" id="9R3-7l-IY3"/>
                             <constraint firstItem="Ae9-5C-dlm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="BBc-BB-CWz"/>
                             <constraint firstItem="nev-dz-gjD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-90" id="GXU-07-b5m"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="tql-aQ-oeF" secondAttribute="bottom" constant="158" id="HVD-PC-Oee"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="tql-aQ-oeF" secondAttribute="bottom" constant="8" id="HVD-PC-Oee"/>
                             <constraint firstItem="sMD-7k-pTN" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="T4v-WO-TF0"/>
                             <constraint firstItem="4jg-f0-FjV" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="UN8-1f-KR1"/>
                             <constraint firstAttribute="bottom" secondItem="4jg-f0-FjV" secondAttribute="bottom" id="YXC-um-ZPg"/>
-                            <constraint firstItem="tql-aQ-oeF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="97" id="kyy-uc-07r"/>
+                            <constraint firstItem="tql-aQ-oeF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="93" id="kyy-uc-07r"/>
                             <constraint firstItem="Ae9-5C-dlm" firstAttribute="bottom" secondItem="4jg-f0-FjV" secondAttribute="bottom" constant="-49" id="rPm-lP-f4s"/>
-                            <constraint firstItem="sMD-7k-pTN" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="150" id="rwd-6G-JMx"/>
+                            <constraint firstItem="sMD-7k-pTN" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="rwd-6G-JMx"/>
                             <constraint firstAttribute="trailing" secondItem="Ae9-5C-dlm" secondAttribute="trailing" id="y24-5U-wGs"/>
                             <constraint firstItem="Ae9-5C-dlm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="zSS-LW-4bn"/>
                         </constraints>
