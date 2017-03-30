@@ -5,23 +5,18 @@
 //  Created by Luay Younus on 3/27/17.
 //  Copyright © 2017 Luay Younus. All rights reserved.
 
-
 import UIKit
-
 
 class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     let filterNames = [FilterName.vintage, FilterName.blackAndWhite, FilterName.chrome, FilterName.colorSpace, FilterName.darkAndSexy]
     
     @IBOutlet weak var mainLabel: UILabel!
-    
-    @IBOutlet weak var imageView: UIImageView!
-
-    @IBOutlet weak var collectionView: UICollectionView!
-    
-    @IBOutlet weak var filtersOption: UIButton!
-    
     @IBOutlet weak var saveToCloudOption: UIButton!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var filtersOption: UIButton!
+    @IBOutlet weak var collectionViewHeightConstraint: NSLayoutConstraint!
     
     let imagePicker = UIImagePickerController() //initializing it in memory
     
@@ -29,7 +24,18 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         super.viewDidLoad()
         
         self.collectionView.dataSource = self
-
+        
+        setupGalleryDelegate()
+    }
+    
+    func setupGalleryDelegate(){
+        if let tabBarController = self.tabBarController { //if we have a tab bar controller
+            guard let viewController = tabBarController.viewControllers else { return }
+            
+            guard let galleryController = viewController[1] as? GalleryViewController else {return}
+            
+            galleryController.delegate = self
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -57,11 +63,8 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         self.imagePicker.sourceType = sourceType
         
-        
-        
         //self.imagePicker is what we will present
         self.present(self.imagePicker, animated: true, completion: nil)
-        
     }
     
     //if the user is presented with the image and clicked cancel, it will get back to the home view controller
@@ -94,10 +97,9 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             }, completion: nil)
         }
     }
-
+    
     @IBAction func imageTapped(_ sender: Any) {
         print("User Tapped Image!")
-        
         self.presentActionSheet()
     }
     
@@ -123,61 +125,11 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         guard let image = self.imageView.image else { return } // if there's no image available, leave safely
         
-        let alertController = UIAlertController(title: "Filter", message: "Please select a filter", preferredStyle: .alert)
+        self.collectionViewHeightConstraint.constant = 150
         
-        let blackAndWhiteAction = UIAlertAction(title: "Black & White", style: .default){ (action) in
-            Filters.filter(name: .blackAndWhite, image: image, completion: {(filteredImage) in
-                self.imageView.image = filteredImage
-            })
-            
+        UIView.animate(withDuration: 0.5){
+            self.view.layoutIfNeeded()
         }
-        
-        let vintageAction = UIAlertAction(title: "Vintage", style: .default) { (action) in
-            Filters.filter(name: .vintage, image: image, completion: { (filteredImage) in
-                self.imageView.image = filteredImage
-            })
-        }
-        
-//        chrome = "CIPhotoEffectChrome"
-//        colorSpace = "CIColorCubeWithColorSpace"
-//        darkAndSexy = "CIColorPolynomial"
-        
-        let chrome = UIAlertAction(title: "Chrome", style: .default) { (action) in
-            Filters.filter(name: .chrome, image: image, completion: { (filteredImage) in
-                self.imageView.image = filteredImage
-            })
-        }
-        
-        let colorSpace = UIAlertAction(title: "Color Space", style: .default) { (action) in
-            Filters.filter(name: .colorSpace, image: image, completion: { (filteredImage) in
-                self.imageView.image = filteredImage
-            })
-        }
-        
-        let darkAndSexy = UIAlertAction(title: "Dark & Sexy", style: .default) { (action) in
-            Filters.filter(name: .darkAndSexy, image: image, completion: { (filteredImage) in
-                self.imageView.image = filteredImage
-            })
-            
-        }
-        
-        
-        let resetAction = UIAlertAction(title: "Reset Image", style: .destructive) {(action) in
-            self.imageView.image = Filters.originalImage
-        }
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler:nil)
-        
-        alertController.addAction(blackAndWhiteAction)
-        alertController.addAction(vintageAction)
-        alertController.addAction(chrome)
-        alertController.addAction(colorSpace)
-        alertController.addAction(darkAndSexy)
-        alertController.addAction(resetAction)
-        alertController.addAction(cancelAction)
-        
-        self.present(alertController, animated: true, completion: nil)
-        
         
     }
     
@@ -185,28 +137,22 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     func presentActionSheet(){
         
-        
         //initializer the UIAlertController (it takes in Strings)
         let actionSheetController = UIAlertController(title: "Source", message: "Please Select Source Type", preferredStyle: .actionSheet)
         //preferredStyle is an Enum here because its a choice
-        
-        
         
         //select the source type of camera
         let cameraAction = UIAlertAction(title: "Camera", style: .default) { (action) in //(action) defining the action for UIAlertAction
             
             self.presentImagePickerWith(sourceType: .camera)
             self.imagePicker.allowsEditing = true
-            
         }
         
         let photoAction = UIAlertAction(title: "Photo Library", style: .default) { (action) in
             self.presentImagePickerWith(sourceType: .photoLibrary)
         }
         
-        
         let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
-
         
         //add those actions to controller with sheets
         actionSheetController.addAction(cameraAction)
@@ -215,7 +161,6 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         if UIDevice.current.userInterfaceIdiom != UIUserInterfaceIdiom.pad {
             actionSheetController.addAction(cancelAction)
         }
-
         
         //for the ipad
         let popover = actionSheetController.popoverPresentationController
@@ -225,7 +170,6 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         //chain together those events with present
         self.present(actionSheetController, animated: true, completion: nil)
-        
     }
 }
 
@@ -235,11 +179,11 @@ extension HomeViewController : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let filterCell = collectionView.dequeueReusableCell(withReuseIdentifier: FilterCell.identifier, for: indexPath) as! FilterCell
-                
+        
         guard let originalImage = Filters.originalImage else { return filterCell }
         
         guard let resizedImage = originalImage.resize(size: CGSize(width: 150 , height: 150)) else { return filterCell }
-            
+        
         let filterName = self.filterNames[indexPath.row]
         
         Filters.filter(name: filterName, image: resizedImage) { (filteredImage) in
@@ -252,6 +196,70 @@ extension HomeViewController : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return filterNames.count
     }
-    
-    
 }
+
+extension HomeViewController : GalleryViewControllerDelegate{
+    func galleryController(didSelect image: UIImage){
+        self.imageView.image = image
+        self.tabBarController?.selectedIndex = 0
+    }
+}
+
+
+// ------------------- Old Alerts for Filter ---------------------
+
+//let alertController = UIAlertController(title: "Filter", message: "Please select a filter", preferredStyle: .alert)
+//
+//let blackAndWhiteAction = UIAlertAction(title: "Black & White", style: .default){ (action) in
+//    Filters.filter(name: .blackAndWhite, image: image, completion: {(filteredImage) in
+//        self.imageView.image = filteredImage
+//    })
+//
+//}
+//
+//let vintageAction = UIAlertAction(title: "Vintage", style: .default) { (action) in
+//    Filters.filter(name: .vintage, image: image, completion: { (filteredImage) in
+//        self.imageView.image = filteredImage
+//    })
+//}
+//
+////        chrome = "CIPhotoEffectChrome"
+////        colorSpace = "CIColorCubeWithColorSpace"
+////        darkAndSexy = "CIColorPolynomial"
+//
+//let chrome = UIAlertAction(title: "Chrome", style: .default) { (action) in
+//    Filters.filter(name: .chrome, image: image, completion: { (filteredImage) in
+//        self.imageView.image = filteredImage
+//    })
+//}
+//
+//let colorSpace = UIAlertAction(title: "Color Space", style: .default) { (action) in
+//    Filters.filter(name: .colorSpace, image: image, completion: { (filteredImage) in
+//        self.imageView.image = filteredImage
+//    })
+//}
+//
+//let darkAndSexy = UIAlertAction(title: "Dark & Sexy", style: .default) { (action) in
+//    Filters.filter(name: .darkAndSexy, image: image, completion: { (filteredImage) in
+//        self.imageView.image = filteredImage
+//    })
+//    
+//}
+//
+//
+//let resetAction = UIAlertAction(title: "Reset Image", style: .destructive) {(action) in
+//    self.imageView.image = Filters.originalImage
+//}
+//
+//let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler:nil)
+//
+//alertController.addAction(blackAndWhiteAction)
+//alertController.addAction(vintageAction)
+//alertController.addAction(chrome)
+//alertController.addAction(colorSpace)
+//alertController.addAction(darkAndSexy)
+//alertController.addAction(resetAction)
+//alertController.addAction(cancelAction)
+//
+//self.present(alertController, animated: true, completion: nil)
+//

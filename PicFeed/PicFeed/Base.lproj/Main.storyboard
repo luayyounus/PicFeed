@@ -67,10 +67,10 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ae9-5C-dlm">
-                                <rect key="frame" x="0.0" y="537" width="414" height="150"/>
+                                <rect key="frame" x="0.0" y="687" width="414" height="0.0"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="LCV-Ph-xLt"/>
+                                    <constraint firstAttribute="height" id="LCV-Ph-xLt"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="eLV-tF-bgI">
                                     <size key="itemSize" width="122" height="112"/>
@@ -80,10 +80,8 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FilterCell" id="E3N-5u-RNc" customClass="FilterCell" customModule="PicFeed" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="19" width="122" height="112"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="122" height="112"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ajz-pl-4vb">
@@ -142,6 +140,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="collectionView" destination="Ae9-5C-dlm" id="rfp-TB-cVr"/>
+                        <outlet property="collectionViewHeightConstraint" destination="LCV-Ph-xLt" id="ISl-j9-nTc"/>
                         <outlet property="filtersOption" destination="nev-dz-gjD" id="SdL-FZ-1Im"/>
                         <outlet property="imageView" destination="4jg-f0-FjV" id="8Mp-Vw-6o4"/>
                         <outlet property="mainLabel" destination="sMD-7k-pTN" id="lhF-b0-qGi"/>
