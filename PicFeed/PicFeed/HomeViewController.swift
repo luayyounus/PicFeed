@@ -8,27 +8,37 @@
 
 import UIKit
 
+
 class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    let imagePicker = UIImagePickerController() //initializing it in memory
-    
+    @IBOutlet weak var mainLabel: UILabel!
     
     @IBOutlet weak var imageView: UIImageView!
 
-    @IBOutlet weak var filterButtonTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var filtersOption: UIButton!
     
-
+    @IBOutlet weak var saveToCloudOption: UIButton!
+    
+    let imagePicker = UIImagePickerController() //initializing it in memory
+    
     override func viewDidLoad() { //its over-riding methods from the super class(parent class)
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        filterButtonTopConstraint.constant = -70
+        
         UIView.animate(withDuration: 0.4){
             self.view.layoutIfNeeded()
         }
+        mainLabel.layer.masksToBounds = true
+        mainLabel.layer.cornerRadius = 8.0
+        
+        filtersOption.layer.masksToBounds = true
+        filtersOption.layer.cornerRadius = 8.0
+        
+        saveToCloudOption.layer.masksToBounds = true
+        saveToCloudOption.layer.cornerRadius = 8.0
     }
     
     func animateOriginalImage(imageView: UIImageView){
@@ -88,7 +98,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         if let image = self.imageView.image {
             
-            let newPost = Post(image: image)
+            let newPost = Post(image: image, date: nil)
             CloudKit.shared.save(post: newPost, completion: { (success) in
                 
                 if success {

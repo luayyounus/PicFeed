@@ -6,22 +6,26 @@
 //  Copyright © 2017 Luay Younus. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import CloudKit
 
-typealias PostCompletion = (Bool)->()
+typealias SuccessCompletion = (Bool)->() //for post
+typealias PostsCompletion = ([Post]?)->() //for fetch
 
 
 class CloudKit {
     static let shared = CloudKit()
     
+    var globalPostsForFooter = Int()
+    
     let container = CKContainer.default()
     
     var privateDatabase : CKDatabase {
-        return self.container.privateCloudDatabase //we can take out the self because its implicit
+        return self.container.privateCloudDatabase
     }
     
-    func save(post: Post, completion: @escaping PostCompletion){ //@escaping goes over the network asynchonously
+    
+    func save(post: Post, completion: @escaping SuccessCompletion){ //@escaping goes over the network asynchonously
         
         do {
             if let record = try Post.recordFor(post: post){
@@ -43,6 +47,51 @@ class CloudKit {
             }
         } catch{
             print(error)
+        }
+    }
+    
+    func getPost(completion: @escaping PostsCompletion){
+        
+        let postQuery = CKQuery(recordType: "Post", predicate: NSPredicate(value: true))
+        
+        let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: true)
+
+        
+        postQuery.sortDescriptors = [sortDescriptor]
+        
+        self.privateDatabase.perform(postQuery, inZoneWith: nil) { (records, error) in
+         
+            if error != nil {
+                OperationQueue.main.addOperation {
+                    completion(nil)
+                }
+            }
+            
+            if let records = records {
+                
+                var posts = [Post]()
+                
+                for record in records {
+                    
+                    let dateFromRecord = record.creationDate
+                    
+                    if let asset = record["image"] as? CKAsset{
+                        let path = asset.fileURL.path
+                        
+                        if let image = UIImage(contentsOfFile: path){
+                            let newPost = Post(image: image,date: dateFromRecord)
+                            
+                            posts.append(newPost)
+                        }
+                    }
+                }
+                
+                self.globalPostsForFooter = posts.count
+                
+                OperationQueue.main.addOperation {
+                    completion(posts)
+                }
+            }
         }
     }
 }

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01015FAC1E8C37AA00AF7F80 /* GalleryCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01015FAB1E8C37AA00AF7F80 /* GalleryCollectionViewLayout.swift */; };
+		010E293A1E8C236F00B25FF0 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010E29391E8C236F00B25FF0 /* GalleryViewController.swift */; };
+		010E293C1E8C277A00B25FF0 /* GalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010E293B1E8C277A00B25FF0 /* GalleryCell.swift */; };
+		015EC0FD1E8D07B500B1DFA5 /* GalleryFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015EC0FC1E8D07B500B1DFA5 /* GalleryFooter.swift */; };
 		0170AE001E8AD0D70007229F /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0170ADFF1E8AD0D70007229F /* Post.swift */; };
 		0170AE021E8AD3730007229F /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0170AE011E8AD3730007229F /* UIExtensions.swift */; };
 		0170AE041E8AE7180007229F /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0170AE031E8AE7180007229F /* Filters.swift */; };
@@ -20,6 +24,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		01015FAB1E8C37AA00AF7F80 /* GalleryCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewLayout.swift; sourceTree = "<group>"; };
+		010E29391E8C236F00B25FF0 /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
+		010E293B1E8C277A00B25FF0 /* GalleryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryCell.swift; sourceTree = "<group>"; };
+		015EC0FC1E8D07B500B1DFA5 /* GalleryFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryFooter.swift; sourceTree = "<group>"; };
 		0170ADFF1E8AD0D70007229F /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		0170AE011E8AD3730007229F /* UIExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
 		0170AE031E8AE7180007229F /* Filters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
@@ -106,7 +114,10 @@
 		0183E07D1E8982320094A249 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				010E29391E8C236F00B25FF0 /* GalleryViewController.swift */,
+				015EC0FC1E8D07B500B1DFA5 /* GalleryFooter.swift */,
 				0183E07F1E8984F40094A249 /* CloudKit.swift */,
+				01015FAB1E8C37AA00AF7F80 /* GalleryCollectionViewLayout.swift */,
 				0183E0631E897EEF0094A249 /* AppDelegate.swift */,
 				0183E0811E898D700094A249 /* HomeViewController.swift */,
 			);
@@ -116,6 +127,7 @@
 		0183E07E1E89824B0094A249 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				010E293B1E8C277A00B25FF0 /* GalleryCell.swift */,
 				0183E0671E897EEF0094A249 /* Main.storyboard */,
 				0183E06C1E897EEF0094A249 /* LaunchScreen.storyboard */,
 			);
@@ -204,8 +216,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0183E0821E898D700094A249 /* HomeViewController.swift in Sources */,
+				010E293A1E8C236F00B25FF0 /* GalleryViewController.swift in Sources */,
 				0183E0801E8984F40094A249 /* CloudKit.swift in Sources */,
+				015EC0FD1E8D07B500B1DFA5 /* GalleryFooter.swift in Sources */,
+				01015FAC1E8C37AA00AF7F80 /* GalleryCollectionViewLayout.swift in Sources */,
 				0183E0641E897EEF0094A249 /* AppDelegate.swift in Sources */,
+				010E293C1E8C277A00B25FF0 /* GalleryCell.swift in Sources */,
 				0170AE041E8AE7180007229F /* Filters.swift in Sources */,
 				0170AE021E8AD3730007229F /* UIExtensions.swift in Sources */,
 				0170AE001E8AD0D70007229F /* Post.swift in Sources */,
