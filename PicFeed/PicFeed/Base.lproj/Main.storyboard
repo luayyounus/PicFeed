@@ -79,7 +79,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FilterCell" id="E3N-5u-RNc" customClass="FilterCell" customModule="PicFeed" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="E3N-5u-RNc" customClass="FilterCell" customModule="PicFeed" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="19" width="122" height="112"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -141,6 +141,7 @@
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="collectionView" destination="Ae9-5C-dlm" id="rfp-TB-cVr"/>
                         <outlet property="filtersOption" destination="nev-dz-gjD" id="SdL-FZ-1Im"/>
                         <outlet property="imageView" destination="4jg-f0-FjV" id="8Mp-Vw-6o4"/>
                         <outlet property="mainLabel" destination="sMD-7k-pTN" id="lhF-b0-qGi"/>

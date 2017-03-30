@@ -11,10 +11,14 @@ import UIKit
 
 class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    let filterNames = [FilterName.vintage, FilterName.blackAndWhite, FilterName.chrome, FilterName.colorSpace, FilterName.darkAndSexy]
+    
     @IBOutlet weak var mainLabel: UILabel!
     
     @IBOutlet weak var imageView: UIImageView!
 
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     @IBOutlet weak var filtersOption: UIButton!
     
     @IBOutlet weak var saveToCloudOption: UIButton!
@@ -23,6 +27,8 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     override func viewDidLoad() { //its over-riding methods from the super class(parent class)
         super.viewDidLoad()
+        
+        self.collectionView.dataSource = self
 
     }
     
@@ -74,6 +80,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             image = originalImage
             Filters.originalImage = originalImage
+            self.collectionView.reloadData()
         }
         
         //dismissing the picker on line 45
@@ -220,4 +227,31 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         self.present(actionSheetController, animated: true, completion: nil)
         
     }
+}
+
+//MARK: UICollectionView DataSouce
+extension HomeViewController : UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let filterCell = collectionView.dequeueReusableCell(withReuseIdentifier: FilterCell.identifier, for: indexPath) as! FilterCell
+                
+        guard let originalImage = Filters.originalImage else { return filterCell }
+        
+        guard let resizedImage = originalImage.resize(size: CGSize(width: 150 , height: 150)) else { return filterCell }
+            
+        let filterName = self.filterNames[indexPath.row]
+        
+        Filters.filter(name: filterName, image: resizedImage) { (filteredImage) in
+            filterCell.imageView.image = filteredImage
+        }
+        
+        return filterCell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return filterNames.count
+    }
+    
+    
 }

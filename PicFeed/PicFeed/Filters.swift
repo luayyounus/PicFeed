@@ -23,6 +23,8 @@ typealias FilterCompletion = (UIImage?) -> ()
 
 class Filters {
     
+    static var originalImage : UIImage? //static var applys directly to the type
+
     let ciContext = CIContext()
     
     static let sharedFilters: Filters = {
@@ -36,9 +38,6 @@ class Filters {
         
         return instance
     }()
-    
-    
-    static var originalImage = UIImage() //static var applys directly to the type
     
     class func filter(name: FilterName, image: UIImage, completion: @escaping FilterCompletion){
         
