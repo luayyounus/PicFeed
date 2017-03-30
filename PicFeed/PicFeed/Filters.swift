@@ -23,6 +23,8 @@ typealias FilterCompletion = (UIImage?) -> ()
 
 class Filters {
     
+    let ciContext = CIContext()
+    
     static let sharedFilters: Filters = {
        let instance = Filters()
         //GPU Context
@@ -34,8 +36,6 @@ class Filters {
         
         return instance
     }()
-    
-    let ciContext = CIContext()
     
     
     static var originalImage = UIImage() //static var applys directly to the type

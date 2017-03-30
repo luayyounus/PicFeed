@@ -21,6 +21,7 @@
 		0183E07B1E8980450094A249 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0183E07A1E8980450094A249 /* CloudKit.framework */; };
 		0183E0801E8984F40094A249 /* CloudKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0183E07F1E8984F40094A249 /* CloudKit.swift */; };
 		0183E0821E898D700094A249 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0183E0811E898D700094A249 /* HomeViewController.swift */; };
+		01856FB21E8D758A003E2A7D /* FilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01856FB11E8D758A003E2A7D /* FilterCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		0183E07A1E8980450094A249 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		0183E07F1E8984F40094A249 /* CloudKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKit.swift; sourceTree = "<group>"; };
 		0183E0811E898D700094A249 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		01856FB11E8D758A003E2A7D /* FilterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 			children = (
 				010E293B1E8C277A00B25FF0 /* GalleryCell.swift */,
 				0183E0671E897EEF0094A249 /* Main.storyboard */,
+				01856FB11E8D758A003E2A7D /* FilterCell.swift */,
 				0183E06C1E897EEF0094A249 /* LaunchScreen.storyboard */,
 			);
 			name = Views;
@@ -217,6 +220,7 @@
 			files = (
 				0183E0821E898D700094A249 /* HomeViewController.swift in Sources */,
 				010E293A1E8C236F00B25FF0 /* GalleryViewController.swift in Sources */,
+				01856FB21E8D758A003E2A7D /* FilterCell.swift in Sources */,
 				0183E0801E8984F40094A249 /* CloudKit.swift in Sources */,
 				015EC0FD1E8D07B500B1DFA5 /* GalleryFooter.swift in Sources */,
 				01015FAC1E8C37AA00AF7F80 /* GalleryCollectionViewLayout.swift in Sources */,

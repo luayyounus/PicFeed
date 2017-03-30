@@ -36,10 +36,4 @@ class GalleryFooter: UICollectionReusableView {
         
         return footerView
     }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        return postsCounter
-    }
-    
 }

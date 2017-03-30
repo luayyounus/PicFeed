@@ -33,22 +33,8 @@
                                     <outletCollection property="gestureRecognizers" destination="1yn-dF-ikk" appends="YES" id="7ct-jp-xgW"/>
                                 </connections>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tql-aQ-oeF">
-                                <rect key="frame" x="212" y="627" width="160" height="40"/>
-                                <color key="backgroundColor" red="0.46237348413709745" green="0.67566227791878175" blue="0.47723855568222401" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="JQi-qo-sqN"/>
-                                    <constraint firstAttribute="width" constant="160" id="NQg-tB-K4j"/>
-                                </constraints>
-                                <state key="normal" title="Save to Cloud">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="postButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="h0T-SA-2lx"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nev-dz-gjD">
-                                <rect key="frame" x="42" y="627" width="160" height="40"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nev-dz-gjD">
+                                <rect key="frame" x="37" y="470" width="160" height="40"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="RYL-kv-cbW"/>
@@ -80,18 +66,73 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ae9-5C-dlm">
+                                <rect key="frame" x="0.0" y="537" width="414" height="150"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="LCV-Ph-xLt"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="eLV-tF-bgI">
+                                    <size key="itemSize" width="122" height="112"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FilterCell" id="E3N-5u-RNc" customClass="FilterCell" customModule="PicFeed" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="19" width="122" height="112"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="122" height="112"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ajz-pl-4vb">
+                                                    <rect key="frame" x="0.0" y="0.0" width="122" height="112"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="Ajz-pl-4vb" secondAttribute="trailing" id="15T-xH-Asf"/>
+                                            <constraint firstAttribute="bottom" secondItem="Ajz-pl-4vb" secondAttribute="bottom" id="YGP-NA-5cz"/>
+                                            <constraint firstItem="Ajz-pl-4vb" firstAttribute="leading" secondItem="E3N-5u-RNc" secondAttribute="leading" id="ccs-En-cWG"/>
+                                            <constraint firstItem="Ajz-pl-4vb" firstAttribute="top" secondItem="E3N-5u-RNc" secondAttribute="top" id="m76-o2-itU"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="imageView" destination="Ajz-pl-4vb" id="9YD-nO-S79"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tql-aQ-oeF">
+                                <rect key="frame" x="234" y="470" width="160" height="40"/>
+                                <color key="backgroundColor" red="0.46237348413709745" green="0.67566227791878175" blue="0.47723855568222401" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="JQi-qo-sqN"/>
+                                    <constraint firstAttribute="width" constant="160" id="NQg-tB-K4j"/>
+                                </constraints>
+                                <state key="normal" title="Save to Cloud">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="postButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="h0T-SA-2lx"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="4jg-f0-FjV" secondAttribute="trailing" id="7zU-io-tOK"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="nev-dz-gjD" secondAttribute="bottom" constant="20" id="9R3-7l-IY3"/>
-                            <constraint firstItem="nev-dz-gjD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-85" id="GXU-07-b5m"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="tql-aQ-oeF" secondAttribute="bottom" constant="20" id="HVD-PC-Oee"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="nev-dz-gjD" secondAttribute="bottom" constant="229" id="9R3-7l-IY3"/>
+                            <constraint firstItem="Ae9-5C-dlm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="BBc-BB-CWz"/>
+                            <constraint firstItem="nev-dz-gjD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-90" id="GXU-07-b5m"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="tql-aQ-oeF" secondAttribute="bottom" constant="229" id="HVD-PC-Oee"/>
                             <constraint firstItem="sMD-7k-pTN" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="T4v-WO-TF0"/>
                             <constraint firstItem="4jg-f0-FjV" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="UN8-1f-KR1"/>
                             <constraint firstAttribute="bottom" secondItem="4jg-f0-FjV" secondAttribute="bottom" id="YXC-um-ZPg"/>
-                            <constraint firstItem="tql-aQ-oeF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="85" id="kyy-uc-07r"/>
+                            <constraint firstItem="tql-aQ-oeF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="107" id="kyy-uc-07r"/>
+                            <constraint firstItem="Ae9-5C-dlm" firstAttribute="bottom" secondItem="4jg-f0-FjV" secondAttribute="bottom" constant="-49" id="rPm-lP-f4s"/>
                             <constraint firstItem="sMD-7k-pTN" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="150" id="rwd-6G-JMx"/>
+                            <constraint firstAttribute="trailing" secondItem="Ae9-5C-dlm" secondAttribute="trailing" id="y24-5U-wGs"/>
+                            <constraint firstItem="Ae9-5C-dlm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="zSS-LW-4bn"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="topRated" id="3e1-nd-BaQ">
