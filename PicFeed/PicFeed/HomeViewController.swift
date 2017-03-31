@@ -170,7 +170,11 @@ class HomeViewController: UIViewController, UINavigationControllerDelegate {
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
         
-        actionSheetController.addAction(cameraAction)
+        if(UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera)){
+            actionSheetController.addAction(cameraAction)
+        }
+
+        
         actionSheetController.addAction(photoAction)
         
         if UIDevice.current.userInterfaceIdiom != UIUserInterfaceIdiom.pad {
