@@ -205,12 +205,12 @@ extension HomeViewController : UIImagePickerControllerDelegate {
 }
 
 //MARK: UICollectionView DataSouce
-extension HomeViewController : UICollectionViewDataSource, UICollectionViewDelegate {
+extension HomeViewController : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let filterCell = collectionView.dequeueReusableCell(withReuseIdentifier: FilterCell.identifier, for: indexPath) as! FilterCell
         
-        guard let originalImage = Filters.originalImage else { return filterCell }
+        guard let originalImage = Filters.originalImage as UIImage? else { return filterCell }
         
         let targetSize = CGFloat(150)
         var resizeFactor : CGFloat
@@ -235,7 +235,9 @@ extension HomeViewController : UICollectionViewDataSource, UICollectionViewDeleg
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return filterNames.count
     }
-    
+}
+
+extension HomeViewController : UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedFilterName = filterNames[indexPath.row]
         Filters.filter(name: selectedFilterName, image: Filters.originalImage!) { (filteredImage) in
@@ -244,10 +246,10 @@ extension HomeViewController : UICollectionViewDataSource, UICollectionViewDeleg
     }
 }
 
+
 extension HomeViewController : GalleryViewControllerDelegate{
     
     func galleryController(didSelect image: UIImage){
-        
         self.imageView.image = image
         self.tabBarController?.selectedIndex = 0
         
