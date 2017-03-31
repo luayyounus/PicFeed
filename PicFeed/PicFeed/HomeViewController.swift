@@ -12,6 +12,10 @@ class HomeViewController: UIViewController, UINavigationControllerDelegate {
     
     let filterNames = [FilterName.vintage, FilterName.blackAndWhite, FilterName.chrome, FilterName.colorSpace, FilterName.dark]
     
+    //welcome screen
+    @IBOutlet weak var welcomeMessage: UILabel!
+    @IBOutlet weak var subtitleMesage: UILabel!
+    
     @IBOutlet weak var mainLabel: UILabel!
     @IBOutlet weak var saveToCloudOption: UIButton!
     @IBOutlet weak var imageView: UIImageView!
@@ -32,6 +36,9 @@ class HomeViewController: UIViewController, UINavigationControllerDelegate {
         
         saveToCloudOption.isHidden = true
     }
+    
+    
+    
     
 //Changes the status bar text color to light (white)
 //    override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -68,6 +75,9 @@ class HomeViewController: UIViewController, UINavigationControllerDelegate {
     }
     
     func presentImagePickerWith(sourceType: UIImagePickerControllerSourceType){
+        
+        welcomeMessage.isHidden = true
+        subtitleMesage.isHidden = true
         
         self.imagePicker.delegate = self
         
@@ -280,6 +290,10 @@ extension HomeViewController : GalleryViewControllerDelegate{
         //show filter
         filterShowWhenImagePicked.constant = 20
         
+        //hide welcome message
+        welcomeMessage.isHidden = true
+        subtitleMesage.isHidden = true
+        
         //save button color restoration and Touch event enabled again
         self.saveToCloudOption.backgroundColor = UIColor(rgb: 0x339966)
         self.saveToCloudOption.isUserInteractionEnabled = true
@@ -289,6 +303,7 @@ extension HomeViewController : GalleryViewControllerDelegate{
         
     }
 }
+
 
 //MARK: HEX Color extension
 extension UIColor {

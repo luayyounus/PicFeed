@@ -22,7 +22,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeHolderBackground" translatesAutoresizingMaskIntoConstraints="NO" id="4jg-f0-FjV">
+                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HomePlaceHolder" translatesAutoresizingMaskIntoConstraints="NO" id="4jg-f0-FjV">
                                 <rect key="frame" x="0.0" y="20" width="414" height="667"/>
                                 <color key="backgroundColor" red="1" green="0.70988793594633803" blue="0.40278940048857115" alpha="0.052975171232876712" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -116,8 +116,22 @@
                                     <action selector="filterButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OCM-kg-L9u"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome To PicFeed!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JkZ-CF-7SD">
+                                <rect key="frame" x="0.0" y="119" width="414" height="68"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="42"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" red="0.20000000000000001" green="0.59999999999999998" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <size key="shadowOffset" width="1" height="0.0"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Touch to select a photo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GR2-Jh-erT">
+                                <rect key="frame" x="0.0" y="184" width="414" height="68"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-LightItalic" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="tql-aQ-oeF">
-                                <rect key="frame" x="316" y="28" width="90" height="41"/>
+                                <rect key="frame" x="313" y="35" width="90" height="41"/>
                                 <color key="backgroundColor" red="0.20000000000000001" green="0.59999999999999998" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="41" id="38g-NF-Mcx"/>
@@ -135,19 +149,26 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="GR2-Jh-erT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="0Nr-sY-uO3"/>
+                            <constraint firstItem="GR2-Jh-erT" firstAttribute="top" secondItem="JkZ-CF-7SD" secondAttribute="bottom" constant="-3" id="2LO-Qp-eat"/>
                             <constraint firstAttribute="trailing" secondItem="4jg-f0-FjV" secondAttribute="trailing" id="7zU-io-tOK"/>
+                            <constraint firstItem="GR2-Jh-erT" firstAttribute="width" secondItem="JkZ-CF-7SD" secondAttribute="width" id="99C-zh-8fe"/>
                             <constraint firstItem="Ae9-5C-dlm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="BBc-BB-CWz"/>
                             <constraint firstItem="nev-dz-gjD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="GXU-07-b5m"/>
                             <constraint firstItem="nev-dz-gjD" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="IDe-2m-9uM"/>
                             <constraint firstItem="4jg-f0-FjV" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="UN8-1f-KR1"/>
-                            <constraint firstItem="tql-aQ-oeF" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="WWC-PP-b2K"/>
+                            <constraint firstItem="tql-aQ-oeF" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="15" id="WWC-PP-b2K"/>
+                            <constraint firstItem="JkZ-CF-7SD" firstAttribute="width" secondItem="4jg-f0-FjV" secondAttribute="width" id="Wpw-EX-M7F"/>
+                            <constraint firstItem="GR2-Jh-erT" firstAttribute="height" secondItem="JkZ-CF-7SD" secondAttribute="height" id="XNj-af-fHN"/>
                             <constraint firstAttribute="bottom" secondItem="4jg-f0-FjV" secondAttribute="bottom" constant="49" id="YXC-um-ZPg"/>
                             <constraint firstAttribute="trailingMargin" secondItem="sMD-7k-pTN" secondAttribute="trailing" constant="600" id="hrn-kM-rAp"/>
-                            <constraint firstAttribute="trailing" secondItem="tql-aQ-oeF" secondAttribute="trailing" constant="8" id="o2F-NC-y6F"/>
+                            <constraint firstItem="JkZ-CF-7SD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="kjc-eL-elS"/>
+                            <constraint firstAttribute="trailing" secondItem="tql-aQ-oeF" secondAttribute="trailing" constant="11" id="o2F-NC-y6F"/>
                             <constraint firstItem="Ae9-5C-dlm" firstAttribute="bottom" secondItem="4jg-f0-FjV" secondAttribute="bottom" id="rPm-lP-f4s"/>
                             <constraint firstItem="sMD-7k-pTN" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="rwd-6G-JMx"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="nev-dz-gjD" secondAttribute="bottom" constant="-100" id="vJc-2O-1GU"/>
                             <constraint firstAttribute="trailing" secondItem="Ae9-5C-dlm" secondAttribute="trailing" id="y24-5U-wGs"/>
+                            <constraint firstItem="JkZ-CF-7SD" firstAttribute="top" secondItem="tql-aQ-oeF" secondAttribute="bottom" constant="43" id="y3p-ZT-2kX"/>
                             <constraint firstItem="Ae9-5C-dlm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="zSS-LW-4bn"/>
                         </constraints>
                     </view>
@@ -163,6 +184,8 @@
                         <outlet property="imageView" destination="4jg-f0-FjV" id="8Mp-Vw-6o4"/>
                         <outlet property="mainLabel" destination="sMD-7k-pTN" id="lhF-b0-qGi"/>
                         <outlet property="saveToCloudOption" destination="tql-aQ-oeF" id="LZv-rA-KUT"/>
+                        <outlet property="subtitleMesage" destination="GR2-Jh-erT" id="wyR-I3-RYZ"/>
+                        <outlet property="welcomeMessage" destination="JkZ-CF-7SD" id="Z1a-qI-NhT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -329,9 +352,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="HomePlaceHolder" width="864" height="576"/>
         <image name="filterButton" width="30" height="30"/>
         <image name="home" width="30" height="30"/>
-        <image name="placeHolderBackground" width="800" height="534"/>
         <image name="profile" width="30" height="30"/>
         <image name="public" width="30" height="30"/>
         <image name="save" width="30" height="30"/>
