@@ -13,15 +13,21 @@ enum FilterName: String {
     case blackAndWhite = "CIPhotoEffectMono"
     case chrome = "CIPhotoEffectChrome"
     case colorSpace = "CIColorCubeWithColorSpace"
-    case darkAndSexy = "CIColorPolynomial"
+    case dark = "CIColorPolynomial"
 }
-
 
 
 //CIs are not thread-safe so we created the typealias
 typealias FilterCompletion = (UIImage?) -> ()
 
 class Filters {
+    
+    static var originalImage : UIImage? //static var applys directly to the type
+
+    let filterNamesArray = ["Vintage","Black & White","Chrome","Color Space","Dark"]
+
+    
+    let ciContext = CIContext()
     
     static let sharedFilters: Filters = {
        let instance = Filters()
@@ -35,11 +41,6 @@ class Filters {
         return instance
     }()
     
-    let ciContext = CIContext()
-    
-    
-    static var originalImage = UIImage() //static var applys directly to the type
-    
     class func filter(name: FilterName, image: UIImage, completion: @escaping FilterCompletion){
         
         OperationQueue().addOperation {
@@ -49,14 +50,19 @@ class Filters {
         let coreImage = CIImage(image: image)
         filter.setValue(coreImage, forKey: kCIInputImageKey)
         
-        
-        
         // Get the final image from using the GPU
         guard let outputImage = filter.outputImage else { fatalError("Fail to get output image from Filter.")}
         
-            if let cgImage = sharedFilters.ciContext.createCGImage(outputImage, from: outputImage.extent){ //extent takes the whole image and draw it exactly on the cloud
+            if let cgImage = sharedFilters.ciContext.createCGImage(outputImage, from: outputImage.extent){
+                //extent takes the whole image and draw it exactly on the cloud
+                //let finalImage = UIImage(cgImage: cgImage)
                 
-                let finalImage = UIImage(cgImage: cgImage)
+                let orientation = image.imageOrientation
+                
+                let scaledImage = image.scale
+                
+                let finalImage = UIImage(cgImage: cgImage, scale: scaledImage, orientation: orientation)
+                
                 
                 OperationQueue.main.addOperation {
                     completion(finalImage)

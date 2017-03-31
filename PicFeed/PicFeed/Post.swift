@@ -20,25 +20,25 @@ class Post {
     }
 }
 
-//image to data
-//data to location on device's disk then use the location(pathway to that data)
+//Image to Data
+//Data to Location(pathway) on device's disk
+//use the Location(pathway) to that data
 enum PostError : Error {
     case writingImageToData
     case writingDataToDisk
 }
 
 
-//handling post to CloudKit
+//MARK: Handling post to CloudKit
 extension Post {
     
     class func recordFor(post: Post) throws -> CKRecord? {
         
-        //GLOBAL function that takes JPEG and the quality of 0.7 (compression to 70%)
-        guard let data = UIImageJPEGRepresentation(post.image, 0.7) else {throw PostError.writingImageToData} //will exit the func
+        //GLOBAL function that takes JPEG photos and the compress them to quality of 0.7 (or 70%)
+        guard let data = UIImageJPEGRepresentation(post.image, 0.7) else {throw PostError.writingImageToData} //will throw and error (exit the func)
         
         
-        //it doesnt return a value so it's good to put it in do-catch
-        
+        //Since this function doesnt return a value, it's better to put it in a do-catch
         do{
             try data.write(to: post.image.path) //write data to disk
             
