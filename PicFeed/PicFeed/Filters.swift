@@ -50,8 +50,6 @@ class Filters {
         let coreImage = CIImage(image: image)
         filter.setValue(coreImage, forKey: kCIInputImageKey)
         
-        
-        
         // Get the final image from using the GPU
         guard let outputImage = filter.outputImage else { fatalError("Fail to get output image from Filter.")}
         

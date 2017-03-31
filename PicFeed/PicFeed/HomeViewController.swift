@@ -249,7 +249,6 @@ extension HomeViewController : GalleryViewControllerDelegate{
     func galleryController(didSelect image: UIImage){
         
         self.imageView.image = image
-        Filters.originalImage = image
         self.tabBarController?.selectedIndex = 0
         
     }
