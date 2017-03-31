@@ -26,6 +26,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         super.viewDidLoad()
         
         self.collectionView.dataSource = self
+        self.collectionView.delegate = self
         
         setupGalleryDelegate()
     }
@@ -130,6 +131,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBAction func filterButtonPressed(_ sender: Any) {
         
         guard let image = self.imageView.image  else { return } // if there's no image available, leave safely
+        
         switch self.collectionViewHeightConstraint.constant {
         case CGFloat(0):
             self.collectionViewHeightConstraint.constant = 150
@@ -142,8 +144,8 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         UIView.animate(withDuration: 0.5){
             self.view.layoutIfNeeded()
         }
-    
         
+        self.imageView.image = image
     }
     
     
@@ -200,8 +202,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
 }
 
 //MARK: UICollectionView DataSouce
-extension HomeViewController : UICollectionViewDataSource {
-    
+extension HomeViewController : UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let filterCell = collectionView.dequeueReusableCell(withReuseIdentifier: FilterCell.identifier, for: indexPath) as! FilterCell
@@ -230,6 +231,13 @@ extension HomeViewController : UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return filterNames.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedFilterName = filterNames[indexPath.row]
+        Filters.filter(name: selectedFilterName, image: Filters.originalImage!) { (filteredImage) in
+            self.imageView.image = filteredImage
+        }
     }
 }
 
