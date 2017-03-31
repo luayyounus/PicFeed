@@ -8,7 +8,7 @@
 import UIKit
 import Social
 
-class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class HomeViewController: UIViewController, UINavigationControllerDelegate {
     
     let filterNames = [FilterName.vintage, FilterName.blackAndWhite, FilterName.chrome, FilterName.colorSpace, FilterName.dark]
     
@@ -37,9 +37,9 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     func setupGalleryDelegate(){
         if let tabBarController = self.tabBarController {
-            guard let viewController = tabBarController.viewControllers else { return }
+            guard let viewControllers = tabBarController.viewControllers else { return }
             
-            guard let galleryController = viewController[1] as? GalleryViewController else {return}
+            guard let galleryController = viewControllers[1] as? GalleryViewController else {return}
             
             galleryController.delegate = self
         }
@@ -74,38 +74,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         self.present(self.imagePicker, animated: true, completion: nil)
     }
     
-    //if the user is presented with the image and clicked cancel, it will get back to the home view controller
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        self.dismiss(animated: true, completion: nil) //HomeViewController tells the imagePicker to dismiss! GET OUT OF MY LIFE!
-    }
-    
-    // didFinishPickingMediaWithInfo coming from the ImgaeDelegate protocol
-    //info[ ] without quotations inside to make sure we didnt type in a wrong key
-    //printing info in the console to show image type, location, size, orientation, scale and a lot others ......
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        //print("Info: \(info)")
-        var image = UIImage()
-        
-        if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            image = originalImage
-            Filters.originalImage = originalImage
-            self.collectionView.reloadData()
-        }
-        
-        //dismissing the picker on line 45
-        self.dismiss(animated: true) {
-            // After dismissing picker controller, do the transition
-            UIView.transition(with: self.imageView,
-                              duration: 0.5,
-                              options: .transitionCrossDissolve,
-                              animations: {
-                                self.imageView.image = image
-            }, completion: nil)
-        }
-    }
-    
-    @IBAction func imageTapped(_ sender: Any) {
+        @IBAction func imageTapped(_ sender: Any) {
         print("User Tapped Image!")
         self.presentActionSheet()
     }
@@ -198,6 +167,40 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         //chain together those events with present
         self.present(actionSheetController, animated: true, completion: nil)
+    }
+}
+
+//MARK: UIImagePickerControllerDelegate
+extension HomeViewController : UIImagePickerControllerDelegate {
+    //if the user is presented with the image and clicked cancel, it will get back to the home view controller
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: nil) //HomeViewController tells the imagePicker to dismiss! GET OUT OF MY LIFE!
+    }
+    
+    // didFinishPickingMediaWithInfo coming from the ImgaeDelegate protocol
+    //info[ ] without quotations inside to make sure we didnt type in a wrong key
+    //printing info in the console to show image type, location, size, orientation, scale and a lot others ......
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        //print("Info: \(info)")
+        var image = UIImage()
+        
+        if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            image = originalImage
+            Filters.originalImage = originalImage
+            self.collectionView.reloadData()
+        }
+        
+        //dismissing the picker on line 45
+        self.dismiss(animated: true) {
+            // After dismissing picker controller, do the transition
+            UIView.transition(with: self.imageView,
+                              duration: 0.5,
+                              options: .transitionCrossDissolve,
+                              animations: {
+                                self.imageView.image = image
+            }, completion: nil)
+        }
     }
 }
 
