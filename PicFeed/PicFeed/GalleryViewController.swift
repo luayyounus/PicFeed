@@ -61,7 +61,7 @@ class GalleryViewController: UIViewController {
         case .ended:
             print("Pinch ended.")
             
-            //ternary operator ( vs. nil coalesing is different that uses ??)
+            //the following is a ternary operator vs. nil coalesing, which is a different type that uses '??'
             let columns = sender.velocity > 0 ? layout.columns - 1 : layout.columns + 1
             
             if columns < 1 || columns > 10 {return}

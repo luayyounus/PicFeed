@@ -23,7 +23,7 @@ class GalleryCell: UICollectionViewCell {
     }
     
     
-    //every Collection has this so we get rid of the flickering between changing images on screen
+    //Every Collection has a prepareForReuse so we can get rid of the flickering between changing images on the screen
     override func prepareForReuse() {
         super.prepareForReuse()
         

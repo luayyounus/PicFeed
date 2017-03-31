@@ -15,10 +15,10 @@ class HomeViewController: UIViewController, UINavigationControllerDelegate {
     @IBOutlet weak var mainLabel: UILabel!
     @IBOutlet weak var saveToCloudOption: UIButton!
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var filterName: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var filtersOption: UIButton!
     @IBOutlet weak var collectionViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var filterShowWhenImagePicked: NSLayoutConstraint!
     
     let imagePicker = UIImagePickerController()
     
@@ -66,11 +66,10 @@ class HomeViewController: UIViewController, UINavigationControllerDelegate {
     
     func presentImagePickerWith(sourceType: UIImagePickerControllerSourceType){
         
-        self.imagePicker.delegate = self //assigning the delegate of the imagePicker to this HomeViewController
+        self.imagePicker.delegate = self
         
         self.imagePicker.sourceType = sourceType
         
-        //self.imagePicker is what we will present
         self.present(self.imagePicker, animated: true, completion: nil)
     }
     
@@ -99,7 +98,10 @@ class HomeViewController: UIViewController, UINavigationControllerDelegate {
     
     @IBAction func filterButtonPressed(_ sender: Any) {
         
-        guard let image = self.imageView.image  else { return } // if there's no image available, leave safely
+        filterShowWhenImagePicked.constant = -50
+
+        
+        guard let image = self.imageView.image else { return }
         
         switch self.collectionViewHeightConstraint.constant {
         case CGFloat(0):
@@ -134,12 +136,9 @@ class HomeViewController: UIViewController, UINavigationControllerDelegate {
     
     func presentActionSheet(){
         
-        //initializer the UIAlertController (it takes in Strings)
         let actionSheetController = UIAlertController(title: "Source", message: "Please Select Source Type", preferredStyle: .actionSheet)
-        //preferredStyle is an Enum here because its a choice
         
-        //select the source type of camera
-        let cameraAction = UIAlertAction(title: "Camera", style: .default) { (action) in //(action) defining the action for UIAlertAction
+        let cameraAction = UIAlertAction(title: "Camera", style: .default) { (action) in
             
             self.presentImagePickerWith(sourceType: .camera)
             self.imagePicker.allowsEditing = true
@@ -151,7 +150,6 @@ class HomeViewController: UIViewController, UINavigationControllerDelegate {
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
         
-        //add those actions to controller with sheets
         actionSheetController.addAction(cameraAction)
         actionSheetController.addAction(photoAction)
         
@@ -159,7 +157,7 @@ class HomeViewController: UIViewController, UINavigationControllerDelegate {
             actionSheetController.addAction(cancelAction)
         }
         
-        //for the ipad
+        //PopOver for the iPad
         let popover = actionSheetController.popoverPresentationController
         popover?.sourceView = imageView
         popover?.sourceRect = imageView.bounds
@@ -170,17 +168,14 @@ class HomeViewController: UIViewController, UINavigationControllerDelegate {
     }
 }
 
-//MARK: UIImagePickerControllerDelegate
+//MARK: UIImagePickerController Delegate
 extension HomeViewController : UIImagePickerControllerDelegate {
-    //if the user is presented with the image and clicked cancel, it will get back to the home view controller
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        self.dismiss(animated: true, completion: nil) //HomeViewController tells the imagePicker to dismiss! GET OUT OF MY LIFE!
+        self.dismiss(animated: true, completion: nil) //HomeViewController tells the imagePicker to dismiss!
     }
     
-    // didFinishPickingMediaWithInfo coming from the ImgaeDelegate protocol
-    //info[ ] without quotations inside to make sure we didnt type in a wrong key
-    //printing info in the console to show image type, location, size, orientation, scale and a lot others ......
     
+    //We use info[ ] without quotations inside to make sure we didnt type in a wrong key
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         //print("Info: \(info)")
         var image = UIImage()
@@ -191,9 +186,14 @@ extension HomeViewController : UIImagePickerControllerDelegate {
             self.collectionView.reloadData()
         }
         
-        //dismissing the picker on line 45
+        //closing the filter cell
+        self.collectionViewHeightConstraint.constant = 0
+        
+        //Showing the Filters Button when picking image from the photoLibrary
+        filterShowWhenImagePicked.constant = 50
+        
+        //dismissing the picker after handing out the picked image to Filters
         self.dismiss(animated: true) {
-            // After dismissing picker controller, do the transition
             UIView.transition(with: self.imageView,
                               duration: 0.5,
                               options: .transitionCrossDissolve,
@@ -237,6 +237,7 @@ extension HomeViewController : UICollectionViewDataSource {
     }
 }
 
+//Mark: UICollectionView Delegate
 extension HomeViewController : UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedFilterName = filterNames[indexPath.row]
@@ -247,70 +248,19 @@ extension HomeViewController : UICollectionViewDelegate {
 }
 
 
+//MARK: GalleryViewController Delegate
 extension HomeViewController : GalleryViewControllerDelegate{
     
     func galleryController(didSelect image: UIImage){
+        
+        //closing the filter cell
+        self.collectionViewHeightConstraint.constant = 0
+        
+        //Showing the Filters Button when picking a photo from the private cloud
+        filterShowWhenImagePicked.constant = 50
+
         self.imageView.image = image
         self.tabBarController?.selectedIndex = 0
         
     }
 }
-
-
-// ------------------- Old Alerts for Filter ---------------------
-
-//let alertController = UIAlertController(title: "Filter", message: "Please select a filter", preferredStyle: .alert)
-//
-//let blackAndWhiteAction = UIAlertAction(title: "Black & White", style: .default){ (action) in
-//    Filters.filter(name: .blackAndWhite, image: image, completion: {(filteredImage) in
-//        self.imageView.image = filteredImage
-//    })
-//
-//}
-//
-//let vintageAction = UIAlertAction(title: "Vintage", style: .default) { (action) in
-//    Filters.filter(name: .vintage, image: image, completion: { (filteredImage) in
-//        self.imageView.image = filteredImage
-//    })
-//}
-//
-////        chrome = "CIPhotoEffectChrome"
-////        colorSpace = "CIColorCubeWithColorSpace"
-////        darkAndSexy = "CIColorPolynomial"
-//
-//let chrome = UIAlertAction(title: "Chrome", style: .default) { (action) in
-//    Filters.filter(name: .chrome, image: image, completion: { (filteredImage) in
-//        self.imageView.image = filteredImage
-//    })
-//}
-//
-//let colorSpace = UIAlertAction(title: "Color Space", style: .default) { (action) in
-//    Filters.filter(name: .colorSpace, image: image, completion: { (filteredImage) in
-//        self.imageView.image = filteredImage
-//    })
-//}
-//
-//let darkAndSexy = UIAlertAction(title: "Dark & Sexy", style: .default) { (action) in
-//    Filters.filter(name: .darkAndSexy, image: image, completion: { (filteredImage) in
-//        self.imageView.image = filteredImage
-//    })
-//    
-//}
-//
-//
-//let resetAction = UIAlertAction(title: "Reset Image", style: .destructive) {(action) in
-//    self.imageView.image = Filters.originalImage
-//}
-//
-//let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler:nil)
-//
-//alertController.addAction(blackAndWhiteAction)
-//alertController.addAction(vintageAction)
-//alertController.addAction(chrome)
-//alertController.addAction(colorSpace)
-//alertController.addAction(darkAndSexy)
-//alertController.addAction(resetAction)
-//alertController.addAction(cancelAction)
-//
-//self.present(alertController, animated: true, completion: nil)
-//
