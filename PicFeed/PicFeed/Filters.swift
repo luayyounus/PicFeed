@@ -24,7 +24,7 @@ class Filters {
     
     static var originalImage : UIImage? //static var applys directly to the type
 
-    let filterNamesArray = ["vintage","blackAndWhite","chrome","colorSpace","dark"]
+    let filterNamesArray = ["Vintage","Black & White","Chrome","Color Space","Dark"]
 
     
     let ciContext = CIContext()

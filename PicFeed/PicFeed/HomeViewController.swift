@@ -29,11 +29,14 @@ class HomeViewController: UIViewController, UINavigationControllerDelegate {
         self.collectionView.delegate = self
         
         setupGalleryDelegate()
+        
+        saveToCloudOption.isHidden = true
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
+//Changes the status bar text color to light (white)
+//    override var preferredStatusBarStyle: UIStatusBarStyle {
+//        return .lightContent
+//    }
     
     func setupGalleryDelegate(){
         if let tabBarController = self.tabBarController {
@@ -74,11 +77,13 @@ class HomeViewController: UIViewController, UINavigationControllerDelegate {
     }
     
         @IBAction func imageTapped(_ sender: Any) {
-        print("User Tapped Image!")
-        self.presentActionSheet()
+            //save button color restoration and Touch event enabled again
+            
+            print("User Tapped Image!")
+            self.presentActionSheet()
     }
     
-    @IBAction func postButtonPressed(_ sender: Any) {
+    @IBAction func postButtonPressed(_ sender: UIButton) {
         
         if let image = self.imageView.image {
             
@@ -86,6 +91,8 @@ class HomeViewController: UIViewController, UINavigationControllerDelegate {
             CloudKit.shared.save(post: newPost, completion: { (success) in
                 
                 if success {
+                    self.saveToCloudOption.backgroundColor = UIColor.lightGray
+                    self.saveToCloudOption.isUserInteractionEnabled = false
                     print("Saved PostSuccessfully to CloudKit!")
                     
                 } else {
@@ -98,6 +105,9 @@ class HomeViewController: UIViewController, UINavigationControllerDelegate {
     
     @IBAction func filterButtonPressed(_ sender: Any) {
         
+        //show the Save Button
+        saveToCloudOption.isHidden = false
+        //show the filter Button
         filterShowWhenImagePicked.constant = -50
 
         
@@ -189,8 +199,16 @@ extension HomeViewController : UIImagePickerControllerDelegate {
         //closing the filter cell
         self.collectionViewHeightConstraint.constant = 0
         
+        //show the save Button
+        saveToCloudOption.isHidden = false
+        
+        //save button color restoration and Touch event enabled again
+        self.saveToCloudOption.backgroundColor = UIColor(rgb: 0x339966)
+        self.saveToCloudOption.isUserInteractionEnabled = true
+
+        
         //Showing the Filters Button when picking image from the photoLibrary
-        filterShowWhenImagePicked.constant = 50
+        filterShowWhenImagePicked.constant = 20
         
         //dismissing the picker after handing out the picked image to Filters
         self.dismiss(animated: true) {
@@ -256,11 +274,37 @@ extension HomeViewController : GalleryViewControllerDelegate{
         //closing the filter cell
         self.collectionViewHeightConstraint.constant = 0
         
-        //Showing the Filters Button when picking a photo from the private cloud
-        filterShowWhenImagePicked.constant = 50
+        //show save
+        saveToCloudOption.isHidden = false
+        
+        //show filter
+        filterShowWhenImagePicked.constant = 20
+        
+        //save button color restoration and Touch event enabled again
+        self.saveToCloudOption.backgroundColor = UIColor(rgb: 0x339966)
+        self.saveToCloudOption.isUserInteractionEnabled = true
 
         self.imageView.image = image
         self.tabBarController?.selectedIndex = 0
         
+    }
+}
+
+//MARK: HEX Color extension
+extension UIColor {
+    convenience init(red: Int, green: Int, blue: Int) {
+        assert(red >= 0 && red <= 255, "Invalid red component")
+        assert(green >= 0 && green <= 255, "Invalid green component")
+        assert(blue >= 0 && blue <= 255, "Invalid blue component")
+        
+        self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
+    }
+    
+    convenience init(rgb: Int) {
+        self.init(
+            red: (rgb >> 16) & 0xFF,
+            green: (rgb >> 8) & 0xFF,
+            blue: rgb & 0xFF
+        )
     }
 }
