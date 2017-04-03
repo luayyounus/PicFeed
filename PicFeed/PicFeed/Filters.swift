@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreImage
 
 enum FilterName: String {
     case vintage = "CIPhotoEffectTransfer"
@@ -26,7 +27,7 @@ class Filters {
 
     let filterNamesArray = ["Vintage","Black & White","Chrome","Color Space","Dark"]
 
-    var ciContext = CIContext()
+    var ciContext : CIContext
     
     static let shared = Filters()
     
