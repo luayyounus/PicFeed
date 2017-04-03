@@ -258,7 +258,7 @@ extension HomeViewController : UICollectionViewDataSource {
         
         Filters.filter(name: filterName, image: resizedImage) { (filteredImage) in
             filterCell.imageView.image = filteredImage
-            filterCell.filterName.text = Filters.sharedFilters.filterNamesArray[indexPath.row]
+            filterCell.filterName.text = Filters.shared.filterNamesArray[indexPath.row]
         }
         
         return filterCell
@@ -307,7 +307,6 @@ extension HomeViewController : GalleryViewControllerDelegate{
         
     }
 }
-
 
 //MARK: HEX Color extension
 extension UIColor {
