@@ -26,20 +26,16 @@ class Filters {
 
     let filterNamesArray = ["Vintage","Black & White","Chrome","Color Space","Dark"]
 
+    var ciContext = CIContext()
     
-    let ciContext = CIContext()
+    static let shared = Filters()
     
-    static let sharedFilters: Filters = {
-       let instance = Filters()
+    private init() {
         //GPU Context
         let options = [kCIContextWorkingColorSpace: NSNull()]
-        
         guard let eaglContext = EAGLContext(api: .openGLES2) else {fatalError("Failed to create EAGLContext.")}
-        
-        let ciContext = CIContext(eaglContext: eaglContext, options: options)
-        
-        return instance
-    }()
+        self.ciContext = CIContext(eaglContext: eaglContext, options: options)
+    }
     
     class func filter(name: FilterName, image: UIImage, completion: @escaping FilterCompletion){
         
@@ -53,7 +49,7 @@ class Filters {
         // Get the final image from using the GPU
         guard let outputImage = filter.outputImage else { fatalError("Fail to get output image from Filter.")}
         
-            if let cgImage = sharedFilters.ciContext.createCGImage(outputImage, from: outputImage.extent){
+            if let cgImage = shared.ciContext.createCGImage(outputImage, from: outputImage.extent){
                 //extent takes the whole image and draw it exactly on the cloud
                 //let finalImage = UIImage(cgImage: cgImage)
                 
