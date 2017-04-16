@@ -15,7 +15,6 @@ class HomeViewController: UIViewController, UINavigationControllerDelegate {
     //welcome screen
     @IBOutlet weak var welcomeMessage: UILabel!
     @IBOutlet weak var subtitleMesage: UILabel!
-    
     @IBOutlet weak var mainLabel: UILabel!
     @IBOutlet weak var saveToCloudOption: UIButton!
     @IBOutlet weak var imageView: UIImageView!
@@ -86,11 +85,11 @@ class HomeViewController: UIViewController, UINavigationControllerDelegate {
         self.present(self.imagePicker, animated: true, completion: nil)
     }
     
-        @IBAction func imageTapped(_ sender: Any) {
-            //save button color restoration and Touch event enabled again
-            
-            print("User Tapped Image!")
-            self.presentActionSheet()
+    @IBAction func imageTapped(_ sender: Any) {
+        //save button color restoration and Touch event enabled again
+        
+        print("User Tapped Image!")
+        self.presentActionSheet()
     }
     
     @IBAction func postButtonPressed(_ sender: UIButton) {
