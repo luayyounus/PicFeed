@@ -8,5 +8,3 @@
 
 ### In Development 
 - A public feed page that holds images from all around the world and can be accessed by anyone without a permission.
-
-![ScreenShot](https://raw.github.com/luayyounus/PicFeed/AppScreenshots/PicFeed001.jpg)
