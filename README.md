@@ -1,5 +1,5 @@
 # Project Name: PicFeed
-#### Project Concept: Instagram clone that allows the user to import an image from their photo library Or camera, apply a filter to it, then save it to the Cloud.
+#### Project Concept: Instagram clone that allows the user to import an image from their Camera or Photo Library, apply a filter to it, then save it to the Cloud.
 
 #### Frameworks
 1) CloudKit is the database framework used to store data.
