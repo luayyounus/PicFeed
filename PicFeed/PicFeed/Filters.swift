@@ -17,13 +17,11 @@ enum FilterName: String {
     case dark = "CIColorPolynomial"
 }
 
-
-//CIs are not thread-safe so we created the typealias
 typealias FilterCompletion = (UIImage?) -> ()
 
 class Filters {
     
-    static var originalImage : UIImage? //static var applys directly to the type
+    static var originalImage : UIImage?
 
     let filterNamesArray = ["Vintage","Black & White","Chrome","Color Space","Dark"]
 
@@ -32,34 +30,25 @@ class Filters {
     static let shared = Filters()
     
     private init() {
-        //GPU Context
         let options = [kCIContextWorkingColorSpace: NSNull()]
         guard let eaglContext = EAGLContext(api: .openGLES2) else {fatalError("Failed to create EAGLContext.")}
         self.ciContext = CIContext(eaglContext: eaglContext, options: options)
     }
     
     class func filter(name: FilterName, image: UIImage, completion: @escaping FilterCompletion){
-        
         OperationQueue().addOperation {
-            
         guard let filter = CIFilter(name: name.rawValue) else {fatalError("Fail to Create CIFilter")}
         
         let coreImage = CIImage(image: image)
         filter.setValue(coreImage, forKey: kCIInputImageKey)
         
-        // Get the final image from using the GPU
         guard let outputImage = filter.outputImage else { fatalError("Fail to get output image from Filter.")}
         
             if let cgImage = shared.ciContext.createCGImage(outputImage, from: outputImage.extent){
-                //extent takes the whole image and draw it exactly on the cloud
-                //let finalImage = UIImage(cgImage: cgImage)
                 
                 let orientation = image.imageOrientation
-                
                 let scaledImage = image.scale
-                
                 let finalImage = UIImage(cgImage: cgImage, scale: scaledImage, orientation: orientation)
-                
                 
                 OperationQueue.main.addOperation {
                     completion(finalImage)

@@ -12,7 +12,6 @@ import CloudKit
 typealias SuccessCompletion = (Bool)->() //for post
 typealias PostsCompletion = ([Post]?)->() //for fetch
 
-
 class CloudKit {
     static let shared = CloudKit()
     
@@ -24,8 +23,7 @@ class CloudKit {
         return self.container.privateCloudDatabase
     }
     
-    
-    func save(post: Post, completion: @escaping SuccessCompletion){ //@escaping goes over the network asynchonously
+    func save(post: Post, completion: @escaping SuccessCompletion){
         
         do {
             if let record = try Post.recordFor(post: post){
@@ -33,9 +31,8 @@ class CloudKit {
                     
                     if error != nil {
                         completion(false)
-                        return //so we dont get to the next record on line 35
+                        return
                     }
-                    
                     if let record = record {
                         print(record)
                         

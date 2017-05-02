@@ -11,8 +11,7 @@ import Social
 class HomeViewController: UIViewController, UINavigationControllerDelegate {
     
     let filterNames = [FilterName.vintage, FilterName.blackAndWhite, FilterName.chrome, FilterName.colorSpace, FilterName.dark]
-    
-    //welcome screen
+
     @IBOutlet weak var welcomeMessage: UILabel!
     @IBOutlet weak var subtitleMesage: UILabel!
     @IBOutlet weak var mainLabel: UILabel!
@@ -32,17 +31,8 @@ class HomeViewController: UIViewController, UINavigationControllerDelegate {
         self.collectionView.delegate = self
         
         setupGalleryDelegate()
-        
         saveToCloudOption.isHidden = true
     }
-    
-    
-    
-    
-//Changes the status bar text color to light (white)
-//    override var preferredStatusBarStyle: UIStatusBarStyle {
-//        return .lightContent
-//    }
     
     func setupGalleryDelegate(){
         if let tabBarController = self.tabBarController {
@@ -79,15 +69,12 @@ class HomeViewController: UIViewController, UINavigationControllerDelegate {
         subtitleMesage.isHidden = true
         
         self.imagePicker.delegate = self
-        
         self.imagePicker.sourceType = sourceType
         
         self.present(self.imagePicker, animated: true, completion: nil)
     }
     
     @IBAction func imageTapped(_ sender: Any) {
-        //save button color restoration and Touch event enabled again
-        
         print("User Tapped Image!")
         self.presentActionSheet()
     }
@@ -114,11 +101,10 @@ class HomeViewController: UIViewController, UINavigationControllerDelegate {
     
     @IBAction func filterButtonPressed(_ sender: Any) {
         
-        //show the Save Button
         saveToCloudOption.isHidden = false
-        //show the filter Button
+        
+        //showing the filter Button
         filterShowWhenImagePicked.constant = -50
-
         
         guard let image = self.imageView.image else { return }
         
@@ -134,27 +120,20 @@ class HomeViewController: UIViewController, UINavigationControllerDelegate {
         UIView.animate(withDuration: 0.5){
             self.view.layoutIfNeeded()
         }
-        
         self.imageView.image = image
     }
     
-    
     @IBAction func userLongPressed(_ sender: UILongPressGestureRecognizer) {
-        
         if SLComposeViewController.isAvailable(forServiceType: SLServiceTypeTwitter){
             
             guard let composeController = SLComposeViewController(forServiceType: SLServiceTypeTwitter) else {return}
         
         composeController.add(self.imageView.image)
-        
         self.present(composeController, animated: true, completion: nil)
         }
     }
     
-    
-    
     func presentActionSheet(){
-        
         let actionSheetController = UIAlertController(title: "Source", message: "Please Select Source Type", preferredStyle: .actionSheet)
         
         let cameraAction = UIAlertAction(title: "Camera", style: .default) { (action) in
@@ -172,7 +151,6 @@ class HomeViewController: UIViewController, UINavigationControllerDelegate {
         if(UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera)){
             actionSheetController.addAction(cameraAction)
         }
-
         
         actionSheetController.addAction(photoAction)
         
@@ -184,9 +162,7 @@ class HomeViewController: UIViewController, UINavigationControllerDelegate {
         let popover = actionSheetController.popoverPresentationController
         popover?.sourceView = imageView
         popover?.sourceRect = imageView.bounds
-        popover?.permittedArrowDirections = UIPopoverArrowDirection.any //the direction of popover
-        
-        //chain together those events with present
+        popover?.permittedArrowDirections = UIPopoverArrowDirection.any
         self.present(actionSheetController, animated: true, completion: nil)
     }
 }
@@ -194,11 +170,9 @@ class HomeViewController: UIViewController, UINavigationControllerDelegate {
 //MARK: UIImagePickerController Delegate
 extension HomeViewController : UIImagePickerControllerDelegate {
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        self.dismiss(animated: true, completion: nil) //HomeViewController tells the imagePicker to dismiss!
+        self.dismiss(animated: true, completion: nil)
     }
     
-    
-    //We use info[ ] without quotations inside to make sure we didnt type in a wrong key
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         //print("Info: \(info)")
         var image = UIImage()
@@ -209,21 +183,16 @@ extension HomeViewController : UIImagePickerControllerDelegate {
             self.collectionView.reloadData()
         }
         
-        //closing the filter cell
+        //Filter cell
         self.collectionViewHeightConstraint.constant = 0
         
-        //show the save Button
         saveToCloudOption.isHidden = false
         
-        //save button color restoration and Touch event enabled again
         self.saveToCloudOption.backgroundColor = UIColor(rgb: 0x339966)
         self.saveToCloudOption.isUserInteractionEnabled = true
-
         
-        //Showing the Filters Button when picking image from the photoLibrary
         filterShowWhenImagePicked.constant = 20
-        
-        //dismissing the picker after handing out the picked image to Filters
+
         self.dismiss(animated: true) {
             UIView.transition(with: self.imageView,
                               duration: 0.5,
@@ -284,20 +253,12 @@ extension HomeViewController : GalleryViewControllerDelegate{
     
     func galleryController(didSelect image: UIImage){
         
-        //closing the filter cell
         self.collectionViewHeightConstraint.constant = 0
-        
-        //show save
-        saveToCloudOption.isHidden = false
-        
-        //show filter
         filterShowWhenImagePicked.constant = 20
-        
-        //hide welcome message
+        saveToCloudOption.isHidden = false
         welcomeMessage.isHidden = true
         subtitleMesage.isHidden = true
         
-        //save button color restoration and Touch event enabled again
         self.saveToCloudOption.backgroundColor = UIColor(rgb: 0x339966)
         self.saveToCloudOption.isUserInteractionEnabled = true
 

@@ -8,14 +8,13 @@
 
 import UIKit
 
-protocol GalleryViewControllerDelegate : class { //class here is a type.. just a weird way delegates are defined
+protocol GalleryViewControllerDelegate : class {
     func galleryController(didSelect Image: UIImage)
 }
 
 class GalleryViewController: UIViewController {
     
     weak var delegate : GalleryViewControllerDelegate?
-
     @IBOutlet weak var collectionView: UICollectionView!
     
     
@@ -24,19 +23,16 @@ class GalleryViewController: UIViewController {
             self.collectionView.reloadData()
         }
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
         self.collectionView.collectionViewLayout = GalleryCollectionViewLayout(columns: 2)
-
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         update()
     }
     
@@ -61,7 +57,6 @@ class GalleryViewController: UIViewController {
         case .ended:
             print("Pinch ended.")
             
-            //the following is a ternary operator vs. nil coalesing, which is a different type that uses '??'
             let columns = sender.velocity > 0 ? layout.columns - 1 : layout.columns + 1
             
             if columns < 1 || columns > 10 {return}
@@ -71,9 +66,7 @@ class GalleryViewController: UIViewController {
             print("Unknown sender state.")
         }
     }
-
 }
-
 
 //MARK: UICollectionViewdataSource Extension
 extension GalleryViewController : UICollectionViewDataSource, UICollectionViewDelegate {
