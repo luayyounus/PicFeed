@@ -159,4 +159,6 @@ playground.xcworkspace
 !*.xcworkspace/contents.xcworkspacedata
 /*.gcno
 
+commentedOut.swift
+
 # End of https://www.gitignore.io/api/xcode,macos,swift,objective-c
