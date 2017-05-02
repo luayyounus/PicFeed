@@ -10,30 +10,22 @@ import UIKit
 
 extension UIImage {
     
-    func resize(size: CGSize) -> UIImage? { //Core Graphic is a UIKit structure
+    func resize(size: CGSize) -> UIImage? {
         UIGraphicsBeginImageContext(size)
         
         self.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
         
-        //capture an image of the draw and get rid of the draw
         let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
-        
-        //Stop the image context
         UIGraphicsEndImageContext()
-        
         return resizedImage
-        
     }
     
     var path: URL {
-        
-        // userDomainMask - user's home directory //give us the path for the requested user's home directory
         guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
             fatalError("Error getting documents directory")
         }
-        return documentDirectory.appendingPathComponent("image") //image is a subdirectory of documentDirectory
+        return documentDirectory.appendingPathComponent("image")
     }
-    
 }
 
 extension UIResponder {

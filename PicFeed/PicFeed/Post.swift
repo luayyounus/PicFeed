@@ -20,9 +20,6 @@ class Post {
     }
 }
 
-//Image to Data
-//Data to Location(pathway) on device's disk
-//use the Location(pathway) to that data
 enum PostError : Error {
     case writingImageToData
     case writingDataToDisk
@@ -33,18 +30,13 @@ enum PostError : Error {
 extension Post {
     
     class func recordFor(post: Post) throws -> CKRecord? {
-        
-        //GLOBAL function that takes JPEG photos and the compress them to quality of 0.7 (or 70%)
-        guard let data = UIImageJPEGRepresentation(post.image, 0.7) else {throw PostError.writingImageToData} //will throw and error (exit the func)
-        
-        
-        //Since this function doesnt return a value, it's better to put it in a do-catch
+        guard let data = UIImageJPEGRepresentation(post.image, 0.7) else {throw PostError.writingImageToData}
         do{
-            try data.write(to: post.image.path) //write data to disk
+            try data.write(to: post.image.path)
             
-            let asset = CKAsset(fileURL: post.image.path) //point the CKAsset to the disk(URL)
+            let asset = CKAsset(fileURL: post.image.path)
             
-            let record = CKRecord(recordType: "Post") //creating a record on cloudkit
+            let record = CKRecord(recordType: "Post")
             
             record.setValue(asset,forKey:"image")
             

@@ -11,9 +11,7 @@ import UIKit
 class GalleryCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     
-    @IBOutlet weak var imageDateCreated: UILabel!
-    
-    
+    @IBOutlet weak var imageDateCreated: UILabel!    
     
     var post: Post! {
         didSet {
@@ -22,12 +20,10 @@ class GalleryCell: UICollectionViewCell {
         }
     }
     
-    
-    //Every Collection has a prepareForReuse so we can get rid of the flickering between changing images on the screen
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        self.imageView.image = nil //when we go through the process we dont see whats happening
+        self.imageView.image = nil
     }
     
 }
