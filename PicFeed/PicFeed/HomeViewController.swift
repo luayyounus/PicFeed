@@ -118,7 +118,6 @@ class HomeViewController: UIViewController, UINavigationControllerDelegate {
         self.saveToCloudOption.isUserInteractionEnabled = false
         
         if let image = self.imageView.image {
-            
             let newPost = Post(image: image, date: nil)
             CloudKit.shared.save(post: newPost, completion: { (success) in
                 
