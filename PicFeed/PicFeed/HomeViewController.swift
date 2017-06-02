@@ -62,7 +62,7 @@ class HomeViewController: UIViewController, UINavigationControllerDelegate {
     func animateOriginalImage(imageView: UIImageView){
         UIView.transition(with: imageView, duration: 2, options: .curveEaseIn, animations: nil, completion: nil)
     }
-    
+
     func presentImagePickerWith(sourceType: UIImagePickerControllerSourceType){
         
         welcomeMessage.isHidden = true
@@ -73,66 +73,7 @@ class HomeViewController: UIViewController, UINavigationControllerDelegate {
         
         self.present(self.imagePicker, animated: true, completion: nil)
     }
-    
-    @IBAction func imageTapped(_ sender: Any) {
-        print("User Tapped Image!")
-        self.presentActionSheet()
-    }
-    
-    @IBAction func postButtonPressed(_ sender: UIButton) {
-        
-        if let image = self.imageView.image {
-            
-            let newPost = Post(image: image, date: nil)
-            CloudKit.shared.save(post: newPost, completion: { (success) in
-                
-                if success {
-                    self.saveToCloudOption.backgroundColor = UIColor.lightGray
-                    self.saveToCloudOption.isUserInteractionEnabled = false
-                    print("Saved PostSuccessfully to CloudKit!")
-                    
-                } else {
-                    print("Unsuccessful save to CloudKit")
-                }
-                
-            })
-        }
-    }
-    
-    @IBAction func filterButtonPressed(_ sender: Any) {
-        
-        saveToCloudOption.isHidden = false
-        
-        //showing the filter Button
-        filterShowWhenImagePicked.constant = -50
-        
-        guard let image = self.imageView.image else { return }
-        
-        switch self.collectionViewHeightConstraint.constant {
-        case CGFloat(0):
-            self.collectionViewHeightConstraint.constant = 150
-        case CGFloat(150):
-            self.collectionViewHeightConstraint.constant = 0
-        default:
-            return
-        }
-        
-        UIView.animate(withDuration: 0.5){
-            self.view.layoutIfNeeded()
-        }
-        self.imageView.image = image
-    }
-    
-    @IBAction func userLongPressed(_ sender: UILongPressGestureRecognizer) {
-        if SLComposeViewController.isAvailable(forServiceType: SLServiceTypeTwitter){
-            
-            guard let composeController = SLComposeViewController(forServiceType: SLServiceTypeTwitter) else {return}
-        
-        composeController.add(self.imageView.image)
-        self.present(composeController, animated: true, completion: nil)
-        }
-    }
-    
+
     func presentActionSheet(){
         let actionSheetController = UIAlertController(title: "Source", message: "Please Select Source Type", preferredStyle: .actionSheet)
         
@@ -164,6 +105,67 @@ class HomeViewController: UIViewController, UINavigationControllerDelegate {
         popover?.sourceRect = imageView.bounds
         popover?.permittedArrowDirections = UIPopoverArrowDirection.any
         self.present(actionSheetController, animated: true, completion: nil)
+    }
+    
+    @IBAction func imageTapped(_ sender: Any) {
+        print("User Tapped Image!")
+        self.presentActionSheet()
+    }
+
+    @IBAction func postButtonPressed(_ sender: UIButton) {
+        
+        self.saveToCloudOption.backgroundColor = UIColor.lightGray
+        self.saveToCloudOption.isUserInteractionEnabled = false
+        
+        if let image = self.imageView.image {
+            
+            let newPost = Post(image: image, date: nil)
+            CloudKit.shared.save(post: newPost, completion: { (success) in
+                
+                if success {
+                    print("Saved PostSuccessfully to CloudKit!")
+                    
+                } else {
+                    self.saveToCloudOption.backgroundColor = UIColor(rgb: 0x339966)
+                    self.saveToCloudOption.isUserInteractionEnabled = true
+                    print("Unsuccessful save to CloudKit")
+                }
+            })
+        }
+    }
+
+    @IBAction func filterButtonPressed(_ sender: Any) {
+        
+        saveToCloudOption.isHidden = false
+        
+        //showing the filter Button
+        filterShowWhenImagePicked.constant = -50
+        
+        guard let image = self.imageView.image else { return }
+        
+        switch self.collectionViewHeightConstraint.constant {
+        case CGFloat(0):
+            self.collectionViewHeightConstraint.constant = 150
+        case CGFloat(150):
+            self.collectionViewHeightConstraint.constant = 0
+        default:
+            return
+        }
+        
+        UIView.animate(withDuration: 0.5){
+            self.view.layoutIfNeeded()
+        }
+        self.imageView.image = image
+    }
+
+    @IBAction func userLongPressed(_ sender: UILongPressGestureRecognizer) {
+        if SLComposeViewController.isAvailable(forServiceType: SLServiceTypeTwitter){
+    
+            guard let composeController = SLComposeViewController(forServiceType: SLServiceTypeTwitter) else {return}
+        
+        composeController.add(self.imageView.image)
+        self.present(composeController, animated: true, completion: nil)
+        }
     }
 }
 
@@ -264,7 +266,6 @@ extension HomeViewController : GalleryViewControllerDelegate{
 
         self.imageView.image = image
         self.tabBarController?.selectedIndex = 0
-        
     }
 }
 
