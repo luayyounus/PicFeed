@@ -58,10 +58,6 @@ class HomeViewController: UIViewController, UINavigationControllerDelegate {
         saveToCloudOption.layer.masksToBounds = true
         saveToCloudOption.layer.cornerRadius = 8.0
     }
-    
-    func animateOriginalImage(imageView: UIImageView){
-        UIView.transition(with: imageView, duration: 2, options: .curveEaseIn, animations: nil, completion: nil)
-    }
 
     func presentImagePickerWith(sourceType: UIImagePickerControllerSourceType){
         
@@ -158,6 +154,7 @@ class HomeViewController: UIViewController, UINavigationControllerDelegate {
     }
 
     @IBAction func userLongPressed(_ sender: UILongPressGestureRecognizer) {
+    
         if SLComposeViewController.isAvailable(forServiceType: SLServiceTypeTwitter){
     
             guard let composeController = SLComposeViewController(forServiceType: SLServiceTypeTwitter) else {return}
@@ -280,9 +277,9 @@ extension UIColor {
     
     convenience init(rgb: Int) {
         self.init(
-            red: (rgb >> 16) & 0xFF,
-            green: (rgb >> 8) & 0xFF,
-            blue: rgb & 0xFF
+            red: (rgb & 0xFF0000) >> 16,
+            green: (rgb & 0x00FF00) >> 8,
+            blue: rgb & 0x0000FF
         )
     }
 }
